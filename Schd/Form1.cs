@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace Schd
 {
@@ -78,11 +79,22 @@ namespace Schd
 
         private void Run_Click(object sender, EventArgs e)
         {
-            if (!readFile) return;
+            if (!readFile)
+                return;
 
-            //스케쥴러 실행
-            resultList = SchedulingAlgorithm.Run(pList, resultList);
+            Button btn = (Button)sender;
 
+            // Simulate scheduling
+            switch (btn.Name)
+            {
+                case "algsFCFS":
+                    resultList = AlgsFCFS.Run(pList, resultList);
+                    break;
+
+                case "algsSJF":
+                    resultList = AlgsFCFS.Run(pList, resultList);
+                    break;
+            }
 
             //결과출력
             dataGridView2.Rows.Clear();
@@ -121,6 +133,10 @@ namespace Schd
             }
         }
 
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {

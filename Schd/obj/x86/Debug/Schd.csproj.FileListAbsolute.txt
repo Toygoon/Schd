@@ -23,3 +23,12 @@ E:\Dropbox\yu\4학년-1학기\운영체제\과제\Term01\Term Project - Process 
 E:\Dropbox\yu\4학년-1학기\운영체제\과제\Term01\Term Project - Process Scheduler Design sample source code\Schd\obj\x86\Debug\Schd.csproj.CoreCompileInputs.cache
 E:\Dropbox\yu\4학년-1학기\운영체제\과제\Term01\Term Project - Process Scheduler Design sample source code\Schd\obj\x86\Debug\Schd.exe
 E:\Dropbox\yu\4학년-1학기\운영체제\과제\Term01\Term Project - Process Scheduler Design sample source code\Schd\obj\x86\Debug\Schd.pdb
+C:\Users\Toygoon\workspace\Schd\Schd\bin\Debug\Schd.exe
+C:\Users\Toygoon\workspace\Schd\Schd\bin\Debug\Schd.pdb
+C:\Users\Toygoon\workspace\Schd\Schd\obj\x86\Debug\Schd.csproj.AssemblyReference.cache
+C:\Users\Toygoon\workspace\Schd\Schd\obj\x86\Debug\Schd.Scheduling.resources
+C:\Users\Toygoon\workspace\Schd\Schd\obj\x86\Debug\Schd.Properties.Resources.resources
+C:\Users\Toygoon\workspace\Schd\Schd\obj\x86\Debug\Schd.csproj.GenerateResource.cache
+C:\Users\Toygoon\workspace\Schd\Schd\obj\x86\Debug\Schd.csproj.CoreCompileInputs.cache
+C:\Users\Toygoon\workspace\Schd\Schd\obj\x86\Debug\Schd.exe
+C:\Users\Toygoon\workspace\Schd\Schd\obj\x86\Debug\Schd.pdb

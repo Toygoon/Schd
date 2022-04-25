@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.algsFCFS = new System.Windows.Forms.Button();
             this.OpenFile = new System.Windows.Forms.Button();
-            this.Run = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,9 +38,11 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.TRTime = new System.Windows.Forms.Label();
             this.avgRT = new System.Windows.Forms.Label();
+            this.algsSJF = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
+
             // 
             // OpenFile
             // 
@@ -51,16 +53,29 @@
             this.OpenFile.Text = "OpenFile";
             this.OpenFile.UseVisualStyleBackColor = true;
             this.OpenFile.Click += new System.EventHandler(this.OpenFile_Click);
+
             // 
-            // Run
+            // algsFCFS
             // 
-            this.Run.Location = new System.Drawing.Point(95, 506);
-            this.Run.Name = "Run";
-            this.Run.Size = new System.Drawing.Size(75, 23);
-            this.Run.TabIndex = 1;
-            this.Run.Text = "Run";
-            this.Run.UseVisualStyleBackColor = true;
-            this.Run.Click += new System.EventHandler(this.Run_Click);
+            this.algsFCFS.Location = new System.Drawing.Point(95, 506);
+            this.algsFCFS.Name = "algsFCFS";
+            this.algsFCFS.Size = new System.Drawing.Size(75, 23);
+            this.algsFCFS.TabIndex = 1;
+            this.algsFCFS.Text = "FCFS";
+            this.algsFCFS.UseVisualStyleBackColor = true;
+            this.algsFCFS.Click += new System.EventHandler(this.Run_Click);
+
+            // 
+            // algsSJF
+            // 
+            this.algsSJF.Location = new System.Drawing.Point(178, 506);
+            this.algsSJF.Name = "algsSJF";
+            this.algsSJF.Size = new System.Drawing.Size(75, 23);
+            this.algsSJF.TabIndex = 2;
+            this.algsSJF.Text = "SJF";
+            this.algsSJF.UseVisualStyleBackColor = true;
+            this.algsSJF.Click += new System.EventHandler(this.Run_Click);
+
             // 
             // panel1
             // 
@@ -69,6 +84,7 @@
             this.panel1.Size = new System.Drawing.Size(469, 103);
             this.panel1.TabIndex = 3;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+
             // 
             // dataGridView1
             // 
@@ -78,6 +94,7 @@
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(469, 139);
             this.dataGridView1.TabIndex = 4;
+
             // 
             // label1
             // 
@@ -100,6 +117,7 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // dataGridView2
             // 
@@ -133,6 +151,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(516, 537);
+            this.Controls.Add(this.algsSJF);
+            this.Controls.Add(this.algsFCFS);
             this.Controls.Add(this.avgRT);
             this.Controls.Add(this.TRTime);
             this.Controls.Add(this.dataGridView2);
@@ -140,7 +160,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.Run);
             this.Controls.Add(this.OpenFile);
             this.Name = "Scheduling";
             this.Text = "Scheduling";
@@ -155,7 +174,6 @@
         #endregion
 
         private System.Windows.Forms.Button OpenFile;
-        private System.Windows.Forms.Button Run;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
@@ -164,6 +182,8 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label TRTime;
         private System.Windows.Forms.Label avgRT;
+        private System.Windows.Forms.Button algsFCFS;
+        private System.Windows.Forms.Button algsSJF;
     }
 }
 

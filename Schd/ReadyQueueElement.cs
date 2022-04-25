@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
-
+using System.Windows.Forms;
 namespace Schd
 {
-    class Result
+    class ReadyQueueElement
     {
         public int processID;
-        public int startP;
         public int burstTime;
         public int waitingTime;
-        public Result(int processID, int startP, int burstTime, int waitingTime)
+
+        public ReadyQueueElement(int processID, int burstTime, int waitingTime)
         {
             this.processID = processID;
-            this.startP = startP;
             this.burstTime = burstTime;
             this.waitingTime = waitingTime;
         }
