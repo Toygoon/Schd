@@ -19,5 +19,7 @@ namespace Schd
             this.burstTime = burstTime;
             this.priority = priority;
         } 
+
+        
     }
 }

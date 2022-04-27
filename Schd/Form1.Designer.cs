@@ -39,6 +39,7 @@
             this.TRTime = new System.Windows.Forms.Label();
             this.avgRT = new System.Windows.Forms.Label();
             this.algsSJF = new System.Windows.Forms.Button();
+            this.algsSRTF = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -75,6 +76,17 @@
             this.algsSJF.Text = "SJF";
             this.algsSJF.UseVisualStyleBackColor = true;
             this.algsSJF.Click += new System.EventHandler(this.Run_Click);
+
+            // 
+            // algsSJF
+            // 
+            this.algsSRTF.Location = new System.Drawing.Point(261, 506);
+            this.algsSRTF.Name = "algsSRTF";
+            this.algsSRTF.Size = new System.Drawing.Size(75, 23);
+            this.algsSRTF.TabIndex = 2;
+            this.algsSRTF.Text = "SRTF";
+            this.algsSRTF.UseVisualStyleBackColor = true;
+            this.algsSRTF.Click += new System.EventHandler(this.Run_Click);
 
             // 
             // panel1
@@ -153,6 +165,7 @@
             this.ClientSize = new System.Drawing.Size(516, 537);
             this.Controls.Add(this.algsSJF);
             this.Controls.Add(this.algsFCFS);
+            this.Controls.Add(this.algsSRTF);
             this.Controls.Add(this.avgRT);
             this.Controls.Add(this.TRTime);
             this.Controls.Add(this.dataGridView2);
@@ -184,6 +197,7 @@
         private System.Windows.Forms.Label avgRT;
         private System.Windows.Forms.Button algsFCFS;
         private System.Windows.Forms.Button algsSJF;
+        private System.Windows.Forms.Button algsSRTF;
     }
 }
 

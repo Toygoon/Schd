@@ -93,6 +93,10 @@ namespace Schd
                 case "algsSJF":
                     resultList = AlgsSJF.Run(pList, resultList);
                     break;
+
+                case "algsSRTF":
+                    resultList = AlgsSRTF.Run(pList, resultList);
+                    break;
             }
 
             //결과출력
