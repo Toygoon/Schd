@@ -57,7 +57,7 @@ namespace Schd
             }
 
             //arriveTime으로 정렬
-            pList.Sort(delegate(Process x, Process y)
+            pList.Sort(delegate (Process x, Process y)
             {
                 if (x.arriveTime > y.arriveTime) return 1;
                 else if (x.arriveTime < y.arriveTime) return -1;
@@ -65,7 +65,6 @@ namespace Schd
                 {
                     return x.processID.CompareTo(y.processID);
                 }
-                //return x.arriveTime.CompareTo(y.arriveTime);
             });
 
             readFile = true;
@@ -92,7 +91,7 @@ namespace Schd
                     break;
 
                 case "algsSJF":
-                    resultList = AlgsFCFS.Run(pList, resultList);
+                    resultList = AlgsSJF.Run(pList, resultList);
                     break;
             }
 

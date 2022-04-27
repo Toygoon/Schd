@@ -32,3 +32,5 @@ C:\Users\Toygoon\workspace\Schd\Schd\obj\x86\Debug\Schd.csproj.GenerateResource.
 C:\Users\Toygoon\workspace\Schd\Schd\obj\x86\Debug\Schd.csproj.CoreCompileInputs.cache
 C:\Users\Toygoon\workspace\Schd\Schd\obj\x86\Debug\Schd.exe
 C:\Users\Toygoon\workspace\Schd\Schd\obj\x86\Debug\Schd.pdb
+C:\Users\Toygoon\workspace\Schd\Schd\bin\Debug\Schd.exe.config
+C:\Users\Toygoon\workspace\Schd\Schd\obj\x86\Debug\Schd.csproj.SuggestedBindingRedirects.cache
