@@ -15,9 +15,9 @@ namespace Schd
     {
         string[] readText;
         private bool readFile = false;
+        private bool schdExecd = false;
         List<Process> pList, pView;
         List<Result> resultList;
-
 
         public Scheduling()
         {
@@ -76,6 +76,13 @@ namespace Schd
             return (openFileDialog1.ShowDialog() == DialogResult.OK) ? openFileDialog1.FileName : null;
         }
 
+        private void Reset_Click(object sender, EventArgs e)
+        {
+            Scheduling NewForm = new Scheduling();
+            NewForm.Show();
+            this.Dispose(false);
+        }
+
         private void Run_Click(object sender, EventArgs e)
         {
             if (!readFile)
@@ -101,6 +108,7 @@ namespace Schd
 
             //결과출력
             dataGridView2.Rows.Clear();
+
             string[] row = { "", "", "", "" };
 
             double watingTime = 0.0;
@@ -117,6 +125,9 @@ namespace Schd
             TRTime.Text = "전체 실행시간: " + (resultList[resultList.Count - 1].startP + resultList[resultList.Count - 1].burstTime).ToString();
             avgRT.Text = "평균 대기시간: " + (watingTime / resultList.Count).ToString();
             panel1.Invalidate();
+
+            readFile = false;
+            schdExecd = true;
         }
 
 
@@ -137,6 +148,11 @@ namespace Schd
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

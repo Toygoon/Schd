@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Schd
 {
@@ -21,10 +16,10 @@ namespace Schd
 
             Process exec = jobList[0];
             int clock = 0, idx = 0, pid = 0, timeBursted = 0, beforepid = exec.processID;
-            List<Tuple<int, int>> waitingTime = new List<Tuple<int, int>>();
+            Dictionary<int, int> waitingTime = new Dictionary<int, int>();
 
-            for(int i=0; i<jobList.Count; i++)
-                waitingTime.Add(new Tuple<int, int>(jobList[i].processID, 0));
+            for (int i = 0; i < jobList.Count; i++)
+                waitingTime.Add(jobList[i].processID, 0);
 
             while (jobList.Count != 0)
             {
@@ -33,9 +28,7 @@ namespace Schd
 
                 for (int i = 0; i < jobList.Count; i++)
                     if (jobList[i].processID != pid && jobList[i].arriveTime <= clock)
-                        for(int j=0; j<waitingTime.Count; j++)
-                            if (waitingTime[j].Item1 == jobList[i].processID)
-                                waitingTime[j] = new Tuple<int, int>(jobList[i].processID, waitingTime[j].Item2 + 1);
+                        waitingTime[jobList[i].processID]++;
 
                 clock++;
                 exec.burstTime--;
@@ -47,15 +40,7 @@ namespace Schd
 
                     if (jobList.Count == 0)
                     {
-                        int tmp = 0;
-                        for (int i = 0; i < waitingTime.Count; i++)
-                            if (waitingTime[i].Item1 == beforepid)
-                            {
-                                tmp = i;
-                                break;
-                            }
-
-                        resultList.Add(new Result(exec.processID, clock - timeBursted, timeBursted, waitingTime[tmp].Item2));
+                        resultList.Add(new Result(exec.processID, clock - timeBursted, timeBursted, waitingTime[exec.processID]));
                         break;
                     }
 
@@ -77,16 +62,8 @@ namespace Schd
 
                 if (beforepid != pid)
                 {
-                    int tmp = 0;
-                    for (int i = 0; i < waitingTime.Count; i++)
-                        if (waitingTime[i].Item1 == beforepid)
-                        {
-                            tmp = i;
-                            break;
-                        }
-
-                    resultList.Add(new Result(beforepid, clock - timeBursted, timeBursted, waitingTime[tmp].Item2));
-                    waitingTime[tmp] = new Tuple<int, int>(beforepid, 0);
+                    resultList.Add(new Result(beforepid, clock - timeBursted, timeBursted, waitingTime[beforepid]));
+                    waitingTime[beforepid] = 0;
                     timeBursted = 0;
                     beforepid = pid;
                 }

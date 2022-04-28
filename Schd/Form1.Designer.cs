@@ -40,21 +40,10 @@
             this.avgRT = new System.Windows.Forms.Label();
             this.algsSJF = new System.Windows.Forms.Button();
             this.algsSRTF = new System.Windows.Forms.Button();
+            this.resetButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
-
-            // 
-            // OpenFile
-            // 
-            this.OpenFile.Location = new System.Drawing.Point(12, 506);
-            this.OpenFile.Name = "OpenFile";
-            this.OpenFile.Size = new System.Drawing.Size(75, 23);
-            this.OpenFile.TabIndex = 0;
-            this.OpenFile.Text = "OpenFile";
-            this.OpenFile.UseVisualStyleBackColor = true;
-            this.OpenFile.Click += new System.EventHandler(this.OpenFile_Click);
-
             // 
             // algsFCFS
             // 
@@ -65,29 +54,16 @@
             this.algsFCFS.Text = "FCFS";
             this.algsFCFS.UseVisualStyleBackColor = true;
             this.algsFCFS.Click += new System.EventHandler(this.Run_Click);
-
             // 
-            // algsSJF
+            // OpenFile
             // 
-            this.algsSJF.Location = new System.Drawing.Point(178, 506);
-            this.algsSJF.Name = "algsSJF";
-            this.algsSJF.Size = new System.Drawing.Size(75, 23);
-            this.algsSJF.TabIndex = 2;
-            this.algsSJF.Text = "SJF";
-            this.algsSJF.UseVisualStyleBackColor = true;
-            this.algsSJF.Click += new System.EventHandler(this.Run_Click);
-
-            // 
-            // algsSJF
-            // 
-            this.algsSRTF.Location = new System.Drawing.Point(261, 506);
-            this.algsSRTF.Name = "algsSRTF";
-            this.algsSRTF.Size = new System.Drawing.Size(75, 23);
-            this.algsSRTF.TabIndex = 2;
-            this.algsSRTF.Text = "SRTF";
-            this.algsSRTF.UseVisualStyleBackColor = true;
-            this.algsSRTF.Click += new System.EventHandler(this.Run_Click);
-
+            this.OpenFile.Location = new System.Drawing.Point(12, 506);
+            this.OpenFile.Name = "OpenFile";
+            this.OpenFile.Size = new System.Drawing.Size(75, 23);
+            this.OpenFile.TabIndex = 0;
+            this.OpenFile.Text = "OpenFile";
+            this.OpenFile.UseVisualStyleBackColor = true;
+            this.OpenFile.Click += new System.EventHandler(this.OpenFile_Click);
             // 
             // panel1
             // 
@@ -96,7 +72,6 @@
             this.panel1.Size = new System.Drawing.Size(469, 103);
             this.panel1.TabIndex = 3;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-
             // 
             // dataGridView1
             // 
@@ -106,7 +81,6 @@
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(469, 139);
             this.dataGridView1.TabIndex = 4;
-
             // 
             // label1
             // 
@@ -139,6 +113,7 @@
             this.dataGridView2.RowTemplate.Height = 23;
             this.dataGridView2.Size = new System.Drawing.Size(469, 122);
             this.dataGridView2.TabIndex = 7;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // TRTime
             // 
@@ -158,6 +133,38 @@
             this.avgRT.TabIndex = 9;
             this.avgRT.Text = "평균 대기시간 :";
             // 
+            // algsSJF
+            // 
+            this.algsSJF.Location = new System.Drawing.Point(178, 506);
+            this.algsSJF.Name = "algsSJF";
+            this.algsSJF.Size = new System.Drawing.Size(75, 23);
+            this.algsSJF.TabIndex = 2;
+            this.algsSJF.Text = "SJF";
+            this.algsSJF.UseVisualStyleBackColor = true;
+            this.algsSJF.Click += new System.EventHandler(this.Run_Click);
+            // 
+            // algsSRTF
+            // 
+            this.algsSRTF.Location = new System.Drawing.Point(261, 506);
+            this.algsSRTF.Name = "algsSRTF";
+            this.algsSRTF.Size = new System.Drawing.Size(75, 23);
+            this.algsSRTF.TabIndex = 2;
+            this.algsSRTF.Text = "SRTF";
+            this.algsSRTF.UseVisualStyleBackColor = true;
+            this.algsSRTF.Click += new System.EventHandler(this.Run_Click);
+
+            // 
+            // resetButton
+            // 
+            this.resetButton.Location = new System.Drawing.Point(344, 506);
+            this.resetButton.Name = "resetButton";
+            this.resetButton.Size = new System.Drawing.Size(75, 23);
+            this.resetButton.TabIndex = 2;
+            this.resetButton.Text = "Reset";
+            this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.Reset_Click);
+
+            // 
             // Scheduling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -166,6 +173,7 @@
             this.Controls.Add(this.algsSJF);
             this.Controls.Add(this.algsFCFS);
             this.Controls.Add(this.algsSRTF);
+            this.Controls.Add(this.resetButton);
             this.Controls.Add(this.avgRT);
             this.Controls.Add(this.TRTime);
             this.Controls.Add(this.dataGridView2);
@@ -174,6 +182,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.OpenFile);
+
             this.Name = "Scheduling";
             this.Text = "Scheduling";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -198,6 +207,8 @@
         private System.Windows.Forms.Button algsFCFS;
         private System.Windows.Forms.Button algsSJF;
         private System.Windows.Forms.Button algsSRTF;
+        private System.Windows.Forms.Button resetButton;
+
     }
 }
 

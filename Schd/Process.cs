@@ -20,24 +20,4 @@ namespace Schd
             this.priority = priority;
         }
     }
-
-    class ProcessExt : Process
-    {
-        public int remainedBurstTime;
-        public int waitingTime;
-        public bool isDone;
-
-        public ProcessExt(int processID,
-                          int arriveTime,
-                          int burstTime,
-                          int priority,
-                          int remainedBurstTime,
-                          int waitingTime,
-                          bool isDone) : base(processID, arriveTime, burstTime, priority)
-        {
-            this.remainedBurstTime = remainedBurstTime;
-            this.waitingTime = waitingTime;
-            this.isDone = isDone;
-        }
-    }
 }
