@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,29 +9,17 @@ namespace Schd
 {
     class AlgsSRTF
     {
-        public static int needsPreempt(List<Process> jobList, int clock, int jobIndex)
+        public static int findNext(List<ProcessExt> processExt, int clock, int curExec)
         {
-            int preempt = -1;
+            if (processExt[curExec].burstTime <= 0)
+                processExt[curExec].isDone = true;
 
-            for (int i = 0; i < jobList.Count; i++)
-            {
-                if (jobList[i].arriveTime <= clock && jobList[i].burstTime < jobList[jobIndex].burstTime)
-                {
-                    preempt = i;
-                }
-            }
 
-            return preempt;
+            return curExec;
         }
 
         public static List<Result> Run(List<Process> jobList, List<Result> resultList)
         {
-            List<ReadyQueueElement> readyQueue = new List<ReadyQueueElement>();
-            int clock = 0, jobIndex = 0, readyIndex = 0, preempt = -1, burstTime = 0;
-
-            bool isDone = false;
-            List<int> completed = new List<int>();
-
             // Sort with; arriveTime, and burstTime
             jobList.Sort(delegate (Process x, Process y)
             {
@@ -39,33 +28,25 @@ namespace Schd
                 else return x.burstTime.CompareTo(y.burstTime);
             });
 
+            int clock = 0, x = 0;
+            List<ProcessExt> processExt = new List<ProcessExt>();
+
             for (int i = 0; i < jobList.Count; i++)
-                readyQueue.Add(new ReadyQueueElement(jobList[i].processID, jobList[i].burstTime, 0));
+                processExt.Add(new ProcessExt(jobList[i].processID,
+                    jobList[i].arriveTime,
+                    jobList[i].burstTime,
+                    jobList[i].priority,
+                    jobList[i].burstTime,
+                    0,
+                    false));
 
-            Process exec = jobList[0];
+            ProcessExt exec = processExt[0];
 
-            while (isDone == false)
+            while (processExt.Count != 0)
             {
-                jobIndex = jobList.IndexOf(jobList.Find(item => item.processID == exec.processID));
-                readyIndex = readyQueue.IndexOf(readyQueue.Find(item => item.processID == exec.processID));
-
-                readyQueue[readyIndex].burstTime--;
                 clock++;
-                burstTime++;
+                processExt[x].burstTime--;
 
-                if (readyQueue[readyIndex].burstTime == 0)
-                {
-                    readyQueue.RemoveAt(readyIndex);
-                    jobList.RemoveAt(jobIndex);
-                    completed.Add(jobIndex);
-                }
-
-                preempt = needsPreempt(jobList, clock, jobIndex);
-                if (preempt != -1)
-                {
-                    exec = jobList[preempt];
-                    resultList.Add(new Result(exec.processID, clock, burstTime, 0));
-                }
             }
 
             return resultList;
