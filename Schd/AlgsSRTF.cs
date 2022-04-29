@@ -39,7 +39,7 @@ namespace Schd
             while (jobList.Count != 0)
             {
                 // Find out the process which should be inserted to the ready queue
-                for (int i = 0; i<jobList.Count; i++)
+                for (int i = 0; i < jobList.Count; i++)
                     if (jobList[i].arriveTime <= clock && readyQueue.Find(x => x.processID == jobList[i].processID) == null)
                         readyQueue.Add(new ReadyQueueElement(jobList[i].processID, jobList[i].burstTime, 0));
 
@@ -49,7 +49,7 @@ namespace Schd
                 if (readyQueue.Count != 0)
                 {
                     // Determine which process should be executed for the next.
-                    for (int i = 0; i<readyQueue.Count; i++)
+                    for (int i = 0; i < readyQueue.Count; i++)
                         if (readyQueue[i].burstTime < readyQueue[next].burstTime)
                             next = i;
                 }
@@ -65,7 +65,7 @@ namespace Schd
                 while (true)
                 {
                     // Insert the new process to the ready queue
-                    for (int i = 0; i<jobList.Count; i++)
+                    for (int i = 0; i < jobList.Count; i++)
                         if (jobList[i].arriveTime <= clock
                             && readyQueue.Find(x => x.processID == jobList[i].processID) == null
                             && jobList[i].processID != exec.processID)
@@ -86,7 +86,7 @@ namespace Schd
                     }
 
                     // Preempt process
-                    for (int i = 0; i<readyQueue.Count; i++)
+                    for (int i = 0; i < readyQueue.Count; i++)
                     {
                         /// Find proper process to be executed for now
                         /// If the proper process founded, swap with current process
@@ -105,7 +105,7 @@ namespace Schd
                     timeBursted++;
 
                     // Increase waiting time except current process in the ready queue
-                    for (int i = 0; i<readyQueue.Count; i++)
+                    for (int i = 0; i < readyQueue.Count; i++)
                         if (next != i)
                             readyQueue[i].waitingTime++;
                 }

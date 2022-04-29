@@ -21,7 +21,7 @@ namespace Schd
             List<ReadyQueueElement> readyQueue = new List<ReadyQueueElement>();
             do
             {
-                while(jobList.Count != 0)
+                while (jobList.Count != 0)
                 {
                     Process frontJob = jobList.ElementAt(0);
                     Debug.WriteLine("frontJob : " + jobList.ElementAt(0).processID);
@@ -70,7 +70,7 @@ namespace Schd
                 runTime++;
 
                 Debug.WriteLine("cpuTime : " + cpuTime + ", runTime : " + runTime);
-                for(int i = 0; i < readyQueue.Count; i++)
+                for (int i = 0; i < readyQueue.Count; i++)
                 {
                     readyQueue.ElementAt(i).waitingTime++;
                     Debug.WriteLine("PID " + readyQueue.ElementAt(i).processID + "'s waitingTime : " + readyQueue.ElementAt(i).waitingTime);

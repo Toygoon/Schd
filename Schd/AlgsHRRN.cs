@@ -55,7 +55,7 @@ namespace Schd
             while (jobList.Count != 0)
             {
                 // Find out the process which should be inserted to the ready queue
-                for (int i = 0; i<jobList.Count; i++)
+                for (int i = 0; i < jobList.Count; i++)
                     if (jobList[i].arriveTime <= clock && readyQueue.Find(x => x.processID == jobList[i].processID) == null)
                         readyQueue.Add(new ReadyQueueElement(jobList[i].processID, jobList[i].burstTime, 0));
 
@@ -65,8 +65,9 @@ namespace Schd
                 if (readyQueue.Count != 0)
                 {
                     ratio = new Dictionary<int, double>();
+
                     // Determine which process should be executed for the next with HRRN calculation
-                    for (int i = 0; i<readyQueue.Count; i++)
+                    for (int i = 0; i < readyQueue.Count; i++)
                         ratio.Add(readyQueue[i].processID, calcHRRN(readyQueue[i].burstTime, readyQueue[i].waitingTime));
 
                     var min = ratio.OrderBy(x => x.Value).Last();
@@ -84,7 +85,7 @@ namespace Schd
                 while (true)
                 {
                     // Insert the new process to the ready queue
-                    for (int i = 0; i<jobList.Count; i++)
+                    for (int i = 0; i < jobList.Count; i++)
                         if (jobList[i].arriveTime <= clock && readyQueue.Find(x => x.processID == jobList[i].processID) == null)
                             readyQueue.Add(new ReadyQueueElement(jobList[i].processID, jobList[i].burstTime, 0));
 
@@ -107,7 +108,7 @@ namespace Schd
                     timeBursted++;
 
                     // Increase waiting time except current process in the ready queue
-                    for (int i = 0; i<readyQueue.Count; i++)
+                    for (int i = 0; i < readyQueue.Count; i++)
                         if (next != i)
                             readyQueue[i].waitingTime++;
                 }
