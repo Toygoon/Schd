@@ -74,7 +74,6 @@ namespace Schd
                     // If burst time is 0, current process is done for executing
                     if (exec.burstTime == 0)
                     {
-                        Debug.WriteLine("pid " + exec.processID);
                         // Add to the resultList
                         resultList.Add(new Result(exec.processID, clock - timeBursted, timeBursted, exec.waitingTime));
 
