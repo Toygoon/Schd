@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Schd
 {
@@ -10,26 +11,6 @@ namespace Schd
     class AlgsSJF
     {
         /// <summary>
-        /// findNextExec function determines which process should be executed for next.
-        /// </summary>
-        /// <param name="jobList">Job queue of processes</param>
-        /// <param name="clock">Current CPU clock</param>
-        /// <returns>The index of next process should be executed</returns>
-        private static int findNextExec(List<Process> jobList, int clock)
-        {
-            int next = 0;
-
-            /// Find the proper index of being executed
-            /// Condition; The process is arrived before the current clock,
-            /// and the burstTime is shorter than any other processes
-            for (int i = 0; i < jobList.Count; i++)
-                if (jobList[i].arriveTime <= clock && jobList[next].burstTime > jobList[i].burstTime)
-                    next = i;
-
-            return next;
-        }
-
-        /// <summary>
         /// Run function makes the result list of SJF algorithms.
         /// </summary>
         /// <param name="jobList">Job queue of processes</param>
@@ -39,9 +20,6 @@ namespace Schd
         {
             // Initialize the result list
             resultList = new List<Result>();
-
-            int clock = 0;
-            bool existsWaiting = false;
 
             // Sort with; arriveTime, and burstTime
             jobList.Sort(delegate (Process x, Process y)
@@ -54,45 +32,71 @@ namespace Schd
                 }
             });
 
-            /// Because jobList is sorted with arrival time, and burst time,
-            /// There's no problem to execute the first process from jobList.
-            resultList.Add(new Result(jobList[0].processID, jobList[0].arriveTime, jobList[0].burstTime, 0));
-            // Move towards to ended time of the first process
-            clock = jobList[0].arriveTime + jobList[0].burstTime;
-            // First job has done with execution, remove the executed process from jobList
-            jobList.RemoveAt(0);
+            int clock = 0, timeBursted = 0;
 
-            // Like the first process, any process done for execution will be removed from jobList
+            List<ReadyQueueElement> readyQueue = new List<ReadyQueueElement>();
+
+            // Any process done for execution will be removed from jobList
+            // Starting CPU
             while (jobList.Count != 0)
             {
-                // Check out there are arrived processes first
+                // Find out the process which should be inserted to the ready queue
                 for (int i = 0; i<jobList.Count; i++)
-                {
-                    if (jobList[i].arriveTime <= clock)
-                        break;
-                    else
-                        existsWaiting = true;
-                }
+                    if (jobList[i].arriveTime <= clock && readyQueue.Find(x => x.processID == jobList[i].processID) == null)
+                        readyQueue.Add(new ReadyQueueElement(jobList[i].processID, jobList[i].burstTime, 0));
 
-                if (existsWaiting)
+                // The index of ready queue to be executed now
+                int next = 0;
+
+                if (readyQueue.Count != 0)
                 {
+                    // Determine which process should be executed for the next.
+                    for (int i=0; i<readyQueue.Count; i++)
+                        if (readyQueue[i].burstTime < readyQueue[next].burstTime)
+                            next = i;
+                }
+                else
+                {
+                    // No process to execute, just increase the clock (idle state)
                     clock++;
                     continue;
                 }
 
-                // Find out proper index of the process which will be executed for now
-                int next = findNextExec(jobList, clock);
-                // The process is selected for executing
-                Process exec = jobList[next];
+                // exec is the process to be executed
+                ReadyQueueElement exec = readyQueue[next];
+                while (true)
+                {
+                    // Insert the new process to the ready queue
+                    for (int i = 0; i<jobList.Count; i++)
+                        if (jobList[i].arriveTime <= clock && readyQueue.Find(x => x.processID == jobList[i].processID) == null)
+                            readyQueue.Add(new ReadyQueueElement(jobList[i].processID, jobList[i].burstTime, 0));
 
-                // Execute process, and calculate the results
-                resultList.Add(new Result(exec.processID, clock, exec.burstTime, clock - exec.arriveTime));
-                // Move towards to ended time
-                clock += exec.burstTime;
-                // Because it has done with executing, remove from the job queue
-                jobList.RemoveAt(next);
+                    // If burst time is 0, current process is done for executing
+                    if (exec.burstTime == 0)
+                    {
+                        // Add to the resultList
+                        resultList.Add(new Result(exec.processID, clock - timeBursted, timeBursted, exec.waitingTime));
 
-                existsWaiting = false;
+                        // Remove from the job queue, and the ready queue
+                        jobList.Remove(jobList.Find(x => x.processID == exec.processID));
+                        readyQueue.RemoveAt(next);
+
+                        break;
+                    }
+
+                    // Execute the process
+                    clock++;
+                    readyQueue[next].burstTime--;
+                    timeBursted++;
+
+                    // Increase waiting time except current process in the ready queue
+                    for (int i = 0; i<readyQueue.Count; i++)
+                        if (next != i)
+                            readyQueue[i].waitingTime++;
+                }
+
+                // Current process is done, so reset the bursted time
+                timeBursted = 0;
             }
 
             return resultList;
