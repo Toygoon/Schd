@@ -41,6 +41,7 @@
             this.algsSJF = new System.Windows.Forms.Button();
             this.algsSRTF = new System.Windows.Forms.Button();
             this.resetButton = new System.Windows.Forms.Button();
+            this.algsHRRN = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -123,6 +124,7 @@
             this.TRTime.Size = new System.Drawing.Size(89, 12);
             this.TRTime.TabIndex = 8;
             this.TRTime.Text = "전체 실행시간 :";
+
             // 
             // avgRT
             // 
@@ -132,6 +134,7 @@
             this.avgRT.Size = new System.Drawing.Size(89, 12);
             this.avgRT.TabIndex = 9;
             this.avgRT.Text = "평균 대기시간 :";
+
             // 
             // algsSJF
             // 
@@ -142,6 +145,7 @@
             this.algsSJF.Text = "SJF";
             this.algsSJF.UseVisualStyleBackColor = true;
             this.algsSJF.Click += new System.EventHandler(this.Run_Click);
+
             // 
             // algsSRTF
             // 
@@ -152,6 +156,17 @@
             this.algsSRTF.Text = "SRTF";
             this.algsSRTF.UseVisualStyleBackColor = true;
             this.algsSRTF.Click += new System.EventHandler(this.Run_Click);
+
+            // 
+            // algsHRRN
+            // 
+            this.algsHRRN.Location = new System.Drawing.Point(344, 506);
+            this.algsHRRN.Name = "algsHRRN";
+            this.algsHRRN.Size = new System.Drawing.Size(75, 23);
+            this.algsHRRN.TabIndex = 2;
+            this.algsHRRN.Text = "HRRN";
+            this.algsHRRN.UseVisualStyleBackColor = true;
+            this.algsHRRN.Click += new System.EventHandler(this.Run_Click);
 
             // 
             // resetButton
@@ -173,6 +188,7 @@
             this.Controls.Add(this.algsSJF);
             this.Controls.Add(this.algsFCFS);
             this.Controls.Add(this.algsSRTF);
+            this.Controls.Add(this.algsHRRN);
             this.Controls.Add(this.resetButton);
             this.Controls.Add(this.avgRT);
             this.Controls.Add(this.TRTime);
@@ -207,6 +223,7 @@
         private System.Windows.Forms.Button algsFCFS;
         private System.Windows.Forms.Button algsSJF;
         private System.Windows.Forms.Button algsSRTF;
+        private System.Windows.Forms.Button algsHRRN;
         private System.Windows.Forms.Button resetButton;
 
     }

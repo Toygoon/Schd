@@ -6,6 +6,8 @@ namespace Schd
     {
         public static List<Result> Run(List<Process> jobList, List<Result> resultList)
         {
+            resultList = new List<Result>();
+
             // Sort with; arriveTime, and burstTime
             jobList.Sort(delegate (Process x, Process y)
             {
@@ -15,7 +17,9 @@ namespace Schd
             });
 
             Process exec = jobList[0];
-            int clock = 0, idx = 0, pid = 0, timeBursted = 0, beforepid = exec.processID;
+            int clock = exec.arriveTime, idx = 0, pid = 0, timeBursted = 0, beforepid = exec.processID;
+
+            // waitingTime; <processID, waitingTime>
             Dictionary<int, int> waitingTime = new Dictionary<int, int>();
 
             for (int i = 0; i < jobList.Count; i++)

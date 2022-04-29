@@ -104,6 +104,10 @@ namespace Schd
                 case "algsSRTF":
                     resultList = AlgsSRTF.Run(pList, resultList);
                     break;
+
+                case "algsHRRN":
+                    resultList = AlgsHRRN.Run(pList, resultList);
+                    break;
             }
 
             //결과출력

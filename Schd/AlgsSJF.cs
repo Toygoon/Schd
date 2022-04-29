@@ -24,6 +24,7 @@ namespace Schd
 
         public static List<Result> Run(List<Process> jobList, List<Result> resultList)
         {
+            resultList = new List<Result>();
             int clock = 0;
 
             // Sort with; arriveTime, and burstTime
@@ -37,7 +38,7 @@ namespace Schd
                 }
             });
 
-            resultList.Add(new Result(jobList[0].processID, 0, jobList[0].burstTime, 0));
+            resultList.Add(new Result(jobList[0].processID, jobList[0].arriveTime, jobList[0].burstTime, 0));
             clock = jobList[0].arriveTime + jobList[0].burstTime;
             jobList.RemoveAt(0);
 

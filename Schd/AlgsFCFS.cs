@@ -10,6 +10,8 @@ namespace Schd
     {
         public static List<Result> Run(List<Process> jobList, List<Result> resultList)
         {
+            resultList = new List<Result>();
+
             int currentProcess = 0;
             int cpuTime = 0;
             int cpuDone = 0;
