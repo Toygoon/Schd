@@ -45,7 +45,9 @@ namespace Schd
 
             int clock = 0, timeBursted = 0;
 
+            // Dictionary to save for all ratio which is in the ready queue
             Dictionary<int, double> ratio;
+
             List<ReadyQueueElement> readyQueue = new List<ReadyQueueElement>();
 
             // Any process done for execution will be removed from jobList
@@ -62,10 +64,13 @@ namespace Schd
 
                 if (readyQueue.Count != 0)
                 {
-                    // Determine which process should be executed for the next.
+                    ratio = new Dictionary<int, double>();
+                    // Determine which process should be executed for the next with HRRN calculation
                     for (int i = 0; i<readyQueue.Count; i++)
-                        if (readyQueue[i].burstTime < readyQueue[next].burstTime)
-                            next = i;
+                        ratio.Add(readyQueue[i].processID, calcHRRN(readyQueue[i].burstTime, readyQueue[i].waitingTime));
+
+                    var min = ratio.OrderBy(x => x.Value).Last();
+                    next = readyQueue.IndexOf(readyQueue.Find(x => x.processID == min.Key));
                 }
                 else
                 {
@@ -110,48 +115,6 @@ namespace Schd
                 // Current process is done, so reset the bursted time
                 timeBursted = 0;
             }
-
-            /*
-            // waitingTime; <processID, waitingTime>
-            Dictionary<int, int> waitingTime = new Dictionary<int, int>();
-            Dictionary<int, double> HRRN;
-
-            for (int i = 0; i < jobList.Count; i++)
-                waitingTime.Add(jobList[i].processID, 0);
-
-            Process exec = jobList[0];
-            int clock = exec.arriveTime, burstTime = 0;
-
-            while (jobList.Count != 0)
-            {
-                for (int i = 0; i < jobList.Count; i++)
-                    if (jobList[i].arriveTime <= clock && exec.processID != jobList[i].processID)
-                        waitingTime[jobList[i].processID]++;
-
-                clock++;
-                burstTime++;
-                exec.burstTime--;
-
-                if (exec.burstTime <= 0)
-                {
-                    resultList.Add(new Result(exec.processID, clock - burstTime, burstTime, waitingTime[exec.processID]));
-                    jobList.RemoveAt(jobList.IndexOf(jobList.Find(x => x.processID == exec.processID)));
-
-                    if (jobList.Count == 0)
-                        break;
-
-                    burstTime = 0;
-                    HRRN = new Dictionary<int, double>();
-
-                    for (int i = 0; i < jobList.Count; i++)
-                        if (jobList[i].arriveTime <= clock)
-                            HRRN.Add(jobList[i].processID, calcHRRN(jobList[i].burstTime, waitingTime[jobList[i].processID]));
-
-                    var min = HRRN.OrderBy(x => x.Value).Last();
-                    exec = jobList.Find(x => x.processID == min.Key);
-                }
-            }
-            */
 
             return resultList;
         }
