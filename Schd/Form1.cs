@@ -110,12 +110,14 @@ namespace Schd
                     break;
 
                 case "algsRR":
+                    /*
                     string value = "";
                     if (inputBox("Set the time quantum.", "5", ref value) == DialogResult.OK)
                         resultList = AlgsRR.Run(pList, resultList, int.Parse(value));
                     else
                         return;
-                    
+                    */
+                    resultList = AlgsRR.Run(pList, resultList, 5);
                     break;
             }
 
