@@ -156,7 +156,7 @@
             // 
             // resetButton
             // 
-            this.resetButton.Location = new System.Drawing.Point(344, 506);
+            this.resetButton.Location = new System.Drawing.Point(12, 540);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(75, 23);
             this.resetButton.TabIndex = 2;
@@ -169,7 +169,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 537);
+            this.ClientSize = new System.Drawing.Size(516, 600);
             this.Controls.Add(this.algsSJF);
             this.Controls.Add(this.algsFCFS);
             this.Controls.Add(this.algsSRTF);

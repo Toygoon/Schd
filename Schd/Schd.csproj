@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlgsFCFS.cs" />
+    <Compile Include="AlgsHRRN.cs" />
     <Compile Include="AlgsSJF.cs" />
     <Compile Include="AlgsSRTF.cs" />
     <Compile Include="Form1.cs">
