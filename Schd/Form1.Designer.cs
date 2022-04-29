@@ -42,6 +42,7 @@
             this.algsSRTF = new System.Windows.Forms.Button();
             this.resetButton = new System.Windows.Forms.Button();
             this.algsHRRN = new System.Windows.Forms.Button();
+            this.algsRR = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -169,6 +170,17 @@
             this.algsHRRN.Click += new System.EventHandler(this.Run_Click);
 
             // 
+            // algsRR
+            // 
+            this.algsRR.Location = new System.Drawing.Point(427, 506);
+            this.algsRR.Name = "algsRR";
+            this.algsRR.Size = new System.Drawing.Size(75, 23);
+            this.algsRR.TabIndex = 2;
+            this.algsRR.Text = "RR";
+            this.algsRR.UseVisualStyleBackColor = true;
+            this.algsRR.Click += new System.EventHandler(this.Run_Click);
+
+            // 
             // resetButton
             // 
             this.resetButton.Location = new System.Drawing.Point(12, 540);
@@ -198,6 +210,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.OpenFile);
+            this.Controls.Add(this.algsRR);
 
             this.Name = "Scheduling";
             this.Text = "Scheduling";
@@ -225,6 +238,7 @@
         private System.Windows.Forms.Button algsSRTF;
         private System.Windows.Forms.Button algsHRRN;
         private System.Windows.Forms.Button resetButton;
+        private System.Windows.Forms.Button algsRR;
 
     }
 }

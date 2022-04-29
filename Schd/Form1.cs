@@ -13,9 +13,9 @@ namespace Schd
 {
     public partial class Scheduling : Form
     {
+        string path;
         string[] readText;
         private bool readFile = false;
-        private bool schdExecd = false;
         List<Process> pList, pView;
         List<Result> resultList;
 
@@ -30,7 +30,7 @@ namespace Schd
             pList.Clear();
 
             //파일 오픈
-            string path =  SelectFilePath();
+            path = SelectFilePath();
             if (path == null) return;
     
             readText = File.ReadAllLines(path);
@@ -108,6 +108,15 @@ namespace Schd
                 case "algsHRRN":
                     resultList = AlgsHRRN.Run(pList, resultList);
                     break;
+
+                case "algsRR":
+                    string value = "";
+                    if (inputBox("Set the time quantum.", "5", ref value) == DialogResult.OK)
+                        resultList = AlgsRR.Run(pList, resultList, int.Parse(value));
+                    else
+                        return;
+                    
+                    break;
             }
 
             //결과출력
@@ -131,9 +140,62 @@ namespace Schd
             panel1.Invalidate();
 
             readFile = false;
-            schdExecd = true;
         }
 
+        private DialogResult inputBox(string title, string content, ref string value)
+        {
+            Size size = new Size(300, 100);
+            //Create a new form using a System.Windows Form
+            Form inputBox = new Form();
+
+            inputBox.FormBorderStyle = FormBorderStyle.FixedDialog;
+            inputBox.ClientSize = size;
+            //Set the window title using the parameter passed
+            inputBox.Text = title;
+
+            //Create a new label to hold the prompt
+            Label label = new Label();
+            label.Text = title;
+            label.Location = new Point(5, 5);
+            label.Width = size.Width - 10;
+            inputBox.Controls.Add(label);
+
+            //Create a textbox to accept the user's input
+            TextBox textBox = new TextBox();
+            textBox.Size = new Size(size.Width - 10, 30);
+            textBox.Location = new Point(5, label.Location.Y + 30);
+            textBox.Text = content;
+            inputBox.Controls.Add(textBox);
+
+            //Create an OK Button 
+            Button okButton = new Button();
+            okButton.DialogResult = DialogResult.OK;
+            okButton.Name = "okButton";
+            okButton.Size = new Size(75, 23);
+            okButton.Text = "&OK";
+            okButton.Location = new Point(size.Width - 80 - 80, size.Height - 25);
+            inputBox.Controls.Add(okButton);
+
+            //Create a Cancel Button
+            Button cancelButton = new Button();
+            cancelButton.DialogResult = DialogResult.Cancel;
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new Size(75, 23);
+            cancelButton.Text = "&Cancel";
+            cancelButton.Location = new Point(size.Width - 80, size.Height - 25);
+            inputBox.Controls.Add(cancelButton);
+
+            //Set the input box's buttons to the created OK and Cancel Buttons respectively so the window appropriately behaves with the button clicks
+            inputBox.AcceptButton = okButton;
+            inputBox.CancelButton = cancelButton;
+
+            //Show the window dialog box 
+            DialogResult result = inputBox.ShowDialog();
+            value = textBox.Text;
+
+            //After input has been submitted, return the input value
+            return result;
+        }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {

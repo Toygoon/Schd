@@ -53,7 +53,6 @@ namespace Schd
                     if (jobList.Count == 0)
                         break;
 
-
                     burstTime = 0;
                     HRRN = new Dictionary<int, double>();
 
