@@ -37,7 +37,7 @@ namespace Schd
             List<ReadyQueueElement> readyQueue = new List<ReadyQueueElement>();
 
             // Any process done for execution will be removed from jobList
-            // Starting CPU
+            // Starting the CPU
             while (jobList.Count != 0)
             {
                 // Find out the process which should be inserted to the ready queue
@@ -86,7 +86,7 @@ namespace Schd
 
                     // Execute the process
                     clock++;
-                    readyQueue[next].burstTime--;
+                    exec.burstTime--;
                     timeBursted++;
 
                     // Increase waiting time except current process in the ready queue
