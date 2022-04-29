@@ -11,7 +11,7 @@ namespace Schd
     class AlgsSJF
     {
         /// <summary>
-        /// Run function makes the result list of SJF algorithms.
+        /// Run function makes the results for executing processes with SJF algorithm to the list
         /// </summary>
         /// <param name="jobList">Job queue of processes</param>
         /// <param name="resultList">The result list to be filled</param>
