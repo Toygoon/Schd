@@ -49,7 +49,7 @@
             // 
             // algsFCFS
             // 
-            this.algsFCFS.Location = new System.Drawing.Point(95, 506);
+            this.algsFCFS.Location = new System.Drawing.Point(97, 676);
             this.algsFCFS.Name = "algsFCFS";
             this.algsFCFS.Size = new System.Drawing.Size(75, 23);
             this.algsFCFS.TabIndex = 1;
@@ -59,7 +59,7 @@
             // 
             // OpenFile
             // 
-            this.OpenFile.Location = new System.Drawing.Point(12, 506);
+            this.OpenFile.Location = new System.Drawing.Point(14, 676);
             this.OpenFile.Name = "OpenFile";
             this.OpenFile.Size = new System.Drawing.Size(75, 23);
             this.OpenFile.TabIndex = 0;
@@ -69,7 +69,7 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(24, 397);
+            this.panel1.Location = new System.Drawing.Point(23, 514);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(469, 103);
             this.panel1.TabIndex = 3;
@@ -78,7 +78,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(24, 44);
+            this.dataGridView1.Location = new System.Drawing.Point(23, 161);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(469, 139);
@@ -87,7 +87,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 26);
+            this.label1.Location = new System.Drawing.Point(23, 143);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 12);
             this.label1.TabIndex = 5;
@@ -96,7 +96,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 199);
+            this.label2.Location = new System.Drawing.Point(23, 316);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 12);
             this.label2.TabIndex = 6;
@@ -110,7 +110,7 @@
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(24, 215);
+            this.dataGridView2.Location = new System.Drawing.Point(23, 332);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 23;
             this.dataGridView2.Size = new System.Drawing.Size(469, 122);
@@ -120,83 +120,76 @@
             // TRTime
             // 
             this.TRTime.AutoSize = true;
-            this.TRTime.Location = new System.Drawing.Point(24, 349);
+            this.TRTime.Location = new System.Drawing.Point(23, 466);
             this.TRTime.Name = "TRTime";
             this.TRTime.Size = new System.Drawing.Size(89, 12);
             this.TRTime.TabIndex = 8;
             this.TRTime.Text = "전체 실행시간 :";
-
             // 
             // avgRT
             // 
             this.avgRT.AutoSize = true;
-            this.avgRT.Location = new System.Drawing.Point(24, 370);
+            this.avgRT.Location = new System.Drawing.Point(23, 487);
             this.avgRT.Name = "avgRT";
             this.avgRT.Size = new System.Drawing.Size(89, 12);
             this.avgRT.TabIndex = 9;
             this.avgRT.Text = "평균 대기시간 :";
-
             // 
             // algsSJF
             // 
-            this.algsSJF.Location = new System.Drawing.Point(178, 506);
+            this.algsSJF.Location = new System.Drawing.Point(180, 676);
             this.algsSJF.Name = "algsSJF";
             this.algsSJF.Size = new System.Drawing.Size(75, 23);
             this.algsSJF.TabIndex = 2;
             this.algsSJF.Text = "SJF";
             this.algsSJF.UseVisualStyleBackColor = true;
             this.algsSJF.Click += new System.EventHandler(this.Run_Click);
-
             // 
             // algsSRTF
             // 
-            this.algsSRTF.Location = new System.Drawing.Point(261, 506);
+            this.algsSRTF.Location = new System.Drawing.Point(263, 676);
             this.algsSRTF.Name = "algsSRTF";
             this.algsSRTF.Size = new System.Drawing.Size(75, 23);
             this.algsSRTF.TabIndex = 2;
             this.algsSRTF.Text = "SRTF";
             this.algsSRTF.UseVisualStyleBackColor = true;
             this.algsSRTF.Click += new System.EventHandler(this.Run_Click);
-
-            // 
-            // algsHRRN
-            // 
-            this.algsHRRN.Location = new System.Drawing.Point(344, 506);
-            this.algsHRRN.Name = "algsHRRN";
-            this.algsHRRN.Size = new System.Drawing.Size(75, 23);
-            this.algsHRRN.TabIndex = 2;
-            this.algsHRRN.Text = "HRRN";
-            this.algsHRRN.UseVisualStyleBackColor = true;
-            this.algsHRRN.Click += new System.EventHandler(this.Run_Click);
-
-            // 
-            // algsRR
-            // 
-            this.algsRR.Location = new System.Drawing.Point(427, 506);
-            this.algsRR.Name = "algsRR";
-            this.algsRR.Size = new System.Drawing.Size(75, 23);
-            this.algsRR.TabIndex = 2;
-            this.algsRR.Text = "RR";
-            this.algsRR.UseVisualStyleBackColor = true;
-            this.algsRR.Click += new System.EventHandler(this.Run_Click);
-
             // 
             // resetButton
             // 
-            this.resetButton.Location = new System.Drawing.Point(12, 540);
+            this.resetButton.Location = new System.Drawing.Point(14, 710);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(75, 23);
             this.resetButton.TabIndex = 2;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
             this.resetButton.Click += new System.EventHandler(this.Reset_Click);
-
+            // 
+            // algsHRRN
+            // 
+            this.algsHRRN.Location = new System.Drawing.Point(346, 676);
+            this.algsHRRN.Name = "algsHRRN";
+            this.algsHRRN.Size = new System.Drawing.Size(75, 23);
+            this.algsHRRN.TabIndex = 2;
+            this.algsHRRN.Text = "HRRN";
+            this.algsHRRN.UseVisualStyleBackColor = true;
+            this.algsHRRN.Click += new System.EventHandler(this.Run_Click);
+            // 
+            // algsRR
+            // 
+            this.algsRR.Location = new System.Drawing.Point(429, 676);
+            this.algsRR.Name = "algsRR";
+            this.algsRR.Size = new System.Drawing.Size(75, 23);
+            this.algsRR.TabIndex = 2;
+            this.algsRR.Text = "RR";
+            this.algsRR.UseVisualStyleBackColor = true;
+            this.algsRR.Click += new System.EventHandler(this.Run_Click);
             // 
             // Scheduling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 600);
+            this.ClientSize = new System.Drawing.Size(516, 747);
             this.Controls.Add(this.algsSJF);
             this.Controls.Add(this.algsFCFS);
             this.Controls.Add(this.algsSRTF);
@@ -211,7 +204,6 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.OpenFile);
             this.Controls.Add(this.algsRR);
-
             this.Name = "Scheduling";
             this.Text = "Scheduling";
             this.Load += new System.EventHandler(this.Form1_Load);

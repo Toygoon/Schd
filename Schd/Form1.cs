@@ -11,7 +11,7 @@ using System.Diagnostics;
 
 namespace Schd
 {
-    public partial class Scheduling : Form
+    public partial class Scheduling : MetroFramework.Forms.MetroForm
     {
         string path;
         string[] readText;
