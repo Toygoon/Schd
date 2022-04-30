@@ -28,7 +28,7 @@ namespace Schd
             while (jobList.Count != 0)
             {
                 // Checking for appropriate target processes existance
-                for (int i=0; i<jobList.Count; i++)
+                for (int i = 0; i<jobList.Count; i++)
                     if (jobList[i].arriveTime <= clock && (readyQueue.Find(x => x.processID == jobList[i].processID) == null))
                         readyQueue.Add(new ReadyQueueElement(jobList[i].processID, jobList[i].burstTime, 0));
 
@@ -39,7 +39,7 @@ namespace Schd
                     timeBursted++;
                     exec.burstTime--;
 
-                    for(int i=0; i<readyQueue.Count; i++)
+                    for (int i = 0; i<readyQueue.Count; i++)
                     {
                         if (readyQueue[i].processID != exec.processID)
                             readyQueue[i].waitingTime++;
@@ -56,107 +56,18 @@ namespace Schd
                             jobList.Remove(tmp);
                         else
                             readyQueue.Add(exec);
-                        
+
                         resultList.Add(new Result(exec.processID, clock - timeBursted, timeBursted, exec.waitingTime));
                         timeBursted = 0;
                     }
-                } else
+                }
+                else
                 {
                     // There's no process to execute
                     clock++;
                     continue;
                 }
             }
-
-            /*
-            int clock = 0, timeBursted = 0;
-            List<ReadyQueueElement> readyQueue = new List<ReadyQueueElement>();
-
-            // Any process done for execution will be removed from jobList
-            // Starting the CPU
-            while (jobList.Count != 0)
-            {
-                // Checking for appropriate target processes existance
-                for (int i = 0; i < jobList.Count; i++)
-                    if (jobList[i].arriveTime <= clock && readyQueue.Find(x => x.processID == jobList[i].processID) == null)
-                        readyQueue.Add(new ReadyQueueElement(jobList[i].processID, jobList[i].burstTime, 0));
-
-                Debug.WriteLine("clock " + clock + ", readyQueueElements " + readyQueue.Count);
-
-                // There's no process to execute
-                if (readyQueue.Count == 0)
-                {
-                    clock++;
-                    continue;
-                }
-
-                ReadyQueueElement exec = null;
-                int cur = 0;
-
-                while (readyQueue.Count != 0)
-                {
-                    exec = readyQueue[cur];
-
-                    clock++;
-                    timeBursted++;
-                    exec.burstTime--;
-                    Debug.WriteLine("clock " + clock + ", readyQueueElements " + readyQueue.Count + ", current " + exec.processID);
-
-                    for (int i = 0; i<jobList.Count; i++)
-                        if (jobList[i].processID != exec.processID
-                            && readyQueue.Find(x => x.processID == exec.processID) == null
-                            && jobList[i].arriveTime <= clock)
-                            readyQueue.Insert(0, new ReadyQueueElement(jobList[i].processID, jobList[i].burstTime, 0));
-
-                    Debug.WriteLine("clock " + clock + ", readyQueueElements " + readyQueue.Count);
-
-                    for (int i = 0; i<readyQueue.Count; i++)
-                    {
-                        Debug.WriteLine("readyQueue " + readyQueue[i].processID + ", exec " + exec.processID);
-                        if (exec.processID != readyQueue[i].processID)
-                            readyQueue[i].waitingTime++;
-                    }
-
-                    for(int i=0; i<readyQueue.Count; i++)
-                    {
-                        Debug.WriteLine("pid " + readyQueue[i].processID + ", wait " + readyQueue[i].waitingTime);
-                    }
-
-                    // Time slice expired or process done
-                    if (timeBursted == tq || exec.burstTime == 0)
-                    {
-                        Process tmp = jobList.Find(x => x.processID == exec.processID);
-                        jobList.Remove(tmp);
-                        readyQueue.Remove(exec);
-                        tmp.burstTime = exec.burstTime;
-                        resultList.Add(new Result(exec.processID, clock - timeBursted, timeBursted, exec.waitingTime));
-
-                        if (readyQueue.Count != 0)
-                        {
-                            exec = readyQueue[0];
-                            cur = 0;
-                        }
-
-                        if (!(exec.burstTime == 0))
-                            jobList.Add(tmp);
-
-                        timeBursted = 0;
-                    }
-                }
-
-                List<int> doneProcess = new List<int>();
-                for (int i = 0; i<jobList.Count; i++)
-                    if (jobList[i].burstTime == 0)
-                        doneProcess.Add(jobList[i].processID);
-
-                while (doneProcess.Count != 0)
-                {
-                    jobList.Remove(jobList.Find(x => x.processID == doneProcess[0]));
-                    doneProcess.RemoveAt(0);
-                }
-            }
-            */
-
 
             return resultList;
         }
