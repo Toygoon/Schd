@@ -23,41 +23,55 @@ namespace Schd
 
             int clock = 0, timeBursted = 0;
             List<ReadyQueueElement> readyQueue = new List<ReadyQueueElement>();
+
+            // The process executing current is saved to 'exec'
             ReadyQueueElement exec = null;
 
             while (jobList.Count != 0)
             {
-                // Checking for appropriate target processes existance
+                // Checking for appropriate target processes
                 for (int i = 0; i<jobList.Count; i++)
+                    // Add to the ready queue, Condition; The process has already arrived, and not exists in the ready queue
                     if (jobList[i].arriveTime <= clock && (readyQueue.Find(x => x.processID == jobList[i].processID) == null))
                         readyQueue.Add(new ReadyQueueElement(jobList[i].processID, jobList[i].burstTime, 0));
 
+                // Execute the process
                 if (readyQueue.Count != 0)
                 {
+                    // Execute the process 
                     exec = readyQueue[0];
                     clock++;
                     timeBursted++;
                     exec.burstTime--;
 
+                    // Increase the waiting time of processes which is not executing for now
                     for (int i = 0; i<readyQueue.Count; i++)
                     {
                         if (readyQueue[i].processID != exec.processID)
                             readyQueue[i].waitingTime++;
                     }
 
+                    // Time quantum expired, or burst time ended
                     if (exec.burstTime == 0 || timeBursted == tq)
                     {
+                        // Find out from the job queue
                         Process tmp = jobList.Find(x => x.processID == exec.processID);
 
+                        // Remove from the ready queue, and change of the its burst time
                         readyQueue.Remove(exec);
                         tmp.burstTime = exec.burstTime;
 
+                        // Remove the job queue when burst time has done
                         if (exec.burstTime == 0)
                             jobList.Remove(tmp);
+                        // or turn it back to the ready queue
                         else
                             readyQueue.Add(exec);
 
+                        // Add to the result list
                         resultList.Add(new Result(exec.processID, clock - timeBursted, timeBursted, exec.waitingTime));
+                        // Reset some values
+                        exec.waitingTime = 0;
                         timeBursted = 0;
                     }
                 }
