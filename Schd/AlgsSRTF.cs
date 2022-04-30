@@ -7,7 +7,6 @@ namespace Schd
     /// Shortest Remaining Time First Algorithm Simulation
     /// By Lim Jung Min (Advanced Computer Systems Laboratory, Yeungnam University)
     /// </summary>
-
     class AlgsSRTF
     {
         /// <summary>
@@ -28,7 +27,6 @@ namespace Schd
                 else if (x.arriveTime < y.arriveTime) return -1;
                 else return x.burstTime.CompareTo(y.burstTime);
             });
-
 
             int clock = 0, timeBursted = 0;
 

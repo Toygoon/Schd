@@ -30,7 +30,7 @@ namespace Schd
             while (jobList.Count != 0)
             {
                 // Checking for appropriate target processes
-                for (int i = 0; i<jobList.Count; i++)
+                for (int i = 0; i < jobList.Count; i++)
                     // Add to the ready queue, Condition; The process has already arrived, and not exists in the ready queue
                     if (jobList[i].arriveTime <= clock && (readyQueue.Find(x => x.processID == jobList[i].processID) == null))
                         readyQueue.Add(new ReadyQueueElement(jobList[i].processID, jobList[i].burstTime, 0));
@@ -45,7 +45,7 @@ namespace Schd
                     exec.burstTime--;
 
                     // Increase the waiting time of processes which is not executing for now
-                    for (int i = 0; i<readyQueue.Count; i++)
+                    for (int i = 0; i < readyQueue.Count; i++)
                     {
                         if (readyQueue[i].processID != exec.processID)
                             readyQueue[i].waitingTime++;
