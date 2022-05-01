@@ -16,7 +16,7 @@ namespace Schd
         string path;
         string[] readText;
         private bool readFile = false;
-        List<Process> pList, pView;
+        List<Process> pList, pView, pBackup;
         List<Result> resultList;
 
         public Scheduling()
@@ -88,28 +88,28 @@ namespace Schd
             if (!readFile)
                 return;
 
-            Button btn = (Button)sender;
+            pBackup = pList.ConvertAll(x => new Process(x.processID, x.arriveTime, x.burstTime, x.priority));
 
             // Simulate scheduling
-            switch (btn.Name)
+            switch (algSelect.GetItemText(algSelect.SelectedItem))
             {
-                case "algsFCFS":
+                case "FCFS":
                     resultList = AlgsFCFS.Run(pList, resultList);
                     break;
 
-                case "algsSJF":
+                case "SJF":
                     resultList = AlgsSJF.Run(pList, resultList);
                     break;
 
-                case "algsSRTF":
+                case "SRTF":
                     resultList = AlgsSRTF.Run(pList, resultList);
                     break;
 
-                case "algsHRRN":
+                case "HRRN":
                     resultList = AlgsHRRN.Run(pList, resultList);
                     break;
 
-                case "algsRR":
+                case "RR":
                     string value = "";
                     if (inputBox("Set the time quantum.", "5", ref value) == DialogResult.OK)
                         resultList = AlgsRR.Run(pList, resultList, int.Parse(value));
@@ -138,7 +138,8 @@ namespace Schd
             avgRT.Text = "평균 대기시간: " + (watingTime / resultList.Count).ToString();
             panel1.Invalidate();
 
-            readFile = false;
+            pList = pBackup.ConvertAll(x => new Process(x.processID, x.arriveTime, x.burstTime, x.priority));
+            //readFile = false;
         }
 
         private DialogResult inputBox(string title, string content, ref string value)
@@ -218,6 +219,41 @@ namespace Schd
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TRTime_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void outputLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fileOpen_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }
