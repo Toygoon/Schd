@@ -86,7 +86,13 @@ namespace Schd
         private void Run_Click(object sender, EventArgs e)
         {
             if (!readFile)
+            {
+                MetroFramework.MetroMessageBox.Show(
+                this,
+                "Open the file, or generate the processes");
                 return;
+            }
+            
 
             pBackup = pList.ConvertAll(x => new Process(x.processID, x.arriveTime, x.burstTime, x.priority));
 
@@ -110,12 +116,14 @@ namespace Schd
                     break;
 
                 case "RR":
-                    string value = "";
-                    if (inputBox("Set the time quantum.", "5", ref value) == DialogResult.OK)
-                        resultList = AlgsRR.Run(pList, resultList, int.Parse(value));
-                    else
-                        return;
-                    break;
+                    using (Form2 form2 = new Form2())
+                    {
+                        if (form2.ShowDialog() == DialogResult.OK)
+                            resultList = AlgsRR.Run(pList, resultList, int.Parse(form2.getQuantum));
+                        else
+                            return;
+                    }
+                        break;
             }
 
             //결과출력
@@ -139,14 +147,13 @@ namespace Schd
             panel1.Invalidate();
 
             pList = pBackup.ConvertAll(x => new Process(x.processID, x.arriveTime, x.burstTime, x.priority));
-            //readFile = false;
         }
 
         private DialogResult inputBox(string title, string content, ref string value)
         {
             Size size = new Size(300, 100);
             //Create a new form using a System.Windows Form
-            Form inputBox = new Form();
+            MetroFramework.Forms.MetroForm inputBox = new MetroFramework.Forms.MetroForm();
 
             inputBox.FormBorderStyle = FormBorderStyle.FixedDialog;
             inputBox.ClientSize = size;
@@ -154,21 +161,21 @@ namespace Schd
             inputBox.Text = title;
 
             //Create a new label to hold the prompt
-            Label label = new Label();
+            MetroFramework.Controls.MetroLabel label = new MetroFramework.Controls.MetroLabel();
             label.Text = title;
             label.Location = new Point(5, 5);
             label.Width = size.Width - 10;
-            inputBox.Controls.Add(label);
+            //inputBox.Controls.Add(label);
 
             //Create a textbox to accept the user's input
-            TextBox textBox = new TextBox();
+            MetroFramework.Controls.MetroTextBox textBox = new MetroFramework.Controls.MetroTextBox();
             textBox.Size = new Size(size.Width - 10, 30);
             textBox.Location = new Point(5, label.Location.Y + 30);
             textBox.Text = content;
             inputBox.Controls.Add(textBox);
 
             //Create an OK Button 
-            Button okButton = new Button();
+            MetroFramework.Controls.MetroButton okButton = new MetroFramework.Controls.MetroButton();
             okButton.DialogResult = DialogResult.OK;
             okButton.Name = "okButton";
             okButton.Size = new Size(75, 23);
@@ -177,7 +184,7 @@ namespace Schd
             inputBox.Controls.Add(okButton);
 
             //Create a Cancel Button
-            Button cancelButton = new Button();
+            MetroFramework.Controls.MetroButton cancelButton = new MetroFramework.Controls.MetroButton();
             cancelButton.DialogResult = DialogResult.Cancel;
             cancelButton.Name = "cancelButton";
             cancelButton.Size = new Size(75, 23);
@@ -284,13 +291,10 @@ namespace Schd
             dataGridView1.Columns.Add(burstTimeColumn);
             dataGridView1.Columns.Add(priorityColumn);
 
-
-
             //결과창
             DataGridViewTextBoxColumn resultProcessColumn = new DataGridViewTextBoxColumn();
             DataGridViewTextBoxColumn resultBurstTimeColumn = new DataGridViewTextBoxColumn();
             DataGridViewTextBoxColumn resultWaitingTimeColumn = new DataGridViewTextBoxColumn();
-
 
             resultProcessColumn.HeaderText = "프로세스";
             resultProcessColumn.Name = "process";

@@ -28,17 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.algsFCFS = new System.Windows.Forms.Button();
-            this.OpenFile1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.algsSJF = new System.Windows.Forms.Button();
-            this.algsSRTF = new System.Windows.Forms.Button();
             this.resetButton = new System.Windows.Forms.Button();
-            this.algsHRRN = new System.Windows.Forms.Button();
-            this.algsRR = new System.Windows.Forms.Button();
             this.inputLabel = new MetroFramework.Controls.MetroLabel();
             this.outputLabel = new MetroFramework.Controls.MetroLabel();
             this.TRTime = new MetroFramework.Controls.MetroLabel();
@@ -52,29 +46,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
-            // algsFCFS
-            // 
-            this.algsFCFS.Location = new System.Drawing.Point(97, 676);
-            this.algsFCFS.Name = "algsFCFS";
-            this.algsFCFS.Size = new System.Drawing.Size(75, 23);
-            this.algsFCFS.TabIndex = 1;
-            this.algsFCFS.Text = "FCFS";
-            this.algsFCFS.UseVisualStyleBackColor = true;
-            this.algsFCFS.Click += new System.EventHandler(this.Run_Click);
-            // 
-            // OpenFile1
-            // 
-            this.OpenFile1.Location = new System.Drawing.Point(14, 676);
-            this.OpenFile1.Name = "OpenFile1";
-            this.OpenFile1.Size = new System.Drawing.Size(75, 23);
-            this.OpenFile1.TabIndex = 0;
-            this.OpenFile1.Text = "OpenFile";
-            this.OpenFile1.UseVisualStyleBackColor = true;
-            this.OpenFile1.Click += new System.EventHandler(this.OpenFile_Click);
-            // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(23, 555);
+            this.panel1.Location = new System.Drawing.Point(23, 564);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(469, 103);
             this.panel1.TabIndex = 3;
@@ -106,26 +80,6 @@
             this.dataGridView2.TabIndex = 7;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
-            // algsSJF
-            // 
-            this.algsSJF.Location = new System.Drawing.Point(180, 676);
-            this.algsSJF.Name = "algsSJF";
-            this.algsSJF.Size = new System.Drawing.Size(75, 23);
-            this.algsSJF.TabIndex = 2;
-            this.algsSJF.Text = "SJF";
-            this.algsSJF.UseVisualStyleBackColor = true;
-            this.algsSJF.Click += new System.EventHandler(this.Run_Click);
-            // 
-            // algsSRTF
-            // 
-            this.algsSRTF.Location = new System.Drawing.Point(263, 676);
-            this.algsSRTF.Name = "algsSRTF";
-            this.algsSRTF.Size = new System.Drawing.Size(75, 23);
-            this.algsSRTF.TabIndex = 2;
-            this.algsSRTF.Text = "SRTF";
-            this.algsSRTF.UseVisualStyleBackColor = true;
-            this.algsSRTF.Click += new System.EventHandler(this.Run_Click);
-            // 
             // resetButton
             // 
             this.resetButton.Location = new System.Drawing.Point(14, 710);
@@ -135,26 +89,6 @@
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
             this.resetButton.Click += new System.EventHandler(this.Reset_Click);
-            // 
-            // algsHRRN
-            // 
-            this.algsHRRN.Location = new System.Drawing.Point(346, 676);
-            this.algsHRRN.Name = "algsHRRN";
-            this.algsHRRN.Size = new System.Drawing.Size(75, 23);
-            this.algsHRRN.TabIndex = 2;
-            this.algsHRRN.Text = "HRRN";
-            this.algsHRRN.UseVisualStyleBackColor = true;
-            this.algsHRRN.Click += new System.EventHandler(this.Run_Click);
-            // 
-            // algsRR
-            // 
-            this.algsRR.Location = new System.Drawing.Point(429, 676);
-            this.algsRR.Name = "algsRR";
-            this.algsRR.Size = new System.Drawing.Size(75, 23);
-            this.algsRR.TabIndex = 2;
-            this.algsRR.Text = "RR";
-            this.algsRR.UseVisualStyleBackColor = true;
-            this.algsRR.Click += new System.EventHandler(this.Run_Click);
             // 
             // inputLabel
             // 
@@ -209,7 +143,6 @@
             this.algSelect.Size = new System.Drawing.Size(131, 29);
             this.algSelect.TabIndex = 14;
             this.algSelect.UseSelectable = true;
-            this.algSelect.SelectedIndex = 0;
             // 
             // selectLabel
             // 
@@ -223,7 +156,7 @@
             // 
             // proceedButton
             // 
-            this.proceedButton.BackgroundImage = global::Schd.Properties.Resources.ok;
+            this.proceedButton.BackgroundImage = global::Schd.Properties.Resources.ok_scaled;
             this.proceedButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.proceedButton.Location = new System.Drawing.Point(426, 73);
             this.proceedButton.Name = "proceedButton";
@@ -234,7 +167,7 @@
             // 
             // randomize
             // 
-            this.randomize.BackgroundImage = global::Schd.Properties.Resources.random;
+            this.randomize.BackgroundImage = global::Schd.Properties.Resources.random_scaled;
             this.randomize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.randomize.Location = new System.Drawing.Point(115, 73);
             this.randomize.Name = "randomize";
@@ -245,7 +178,7 @@
             // 
             // openFile
             // 
-            this.openFile.BackgroundImage = global::Schd.Properties.Resources.fileopen;
+            this.openFile.BackgroundImage = global::Schd.Properties.Resources.fileopen_scaled;
             this.openFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.openFile.Location = new System.Drawing.Point(24, 73);
             this.openFile.Name = "openFile";
@@ -268,18 +201,12 @@
             this.Controls.Add(this.outputLabel);
             this.Controls.Add(this.selectLabel);
             this.Controls.Add(this.inputLabel);
-            this.Controls.Add(this.algsSJF);
-            this.Controls.Add(this.algsFCFS);
-            this.Controls.Add(this.algsSRTF);
-            this.Controls.Add(this.algsHRRN);
             this.Controls.Add(this.resetButton);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.OpenFile1);
-            this.Controls.Add(this.algsRR);
             this.Name = "Scheduling";
-            this.Text = "Scheduling";
+            this.Text = "CPU Scheduling";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -289,18 +216,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button OpenFile1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Button algsFCFS;
-        private System.Windows.Forms.Button algsSJF;
-        private System.Windows.Forms.Button algsSRTF;
-        private System.Windows.Forms.Button algsHRRN;
         private System.Windows.Forms.Button resetButton;
-        private System.Windows.Forms.Button algsRR;
         private MetroFramework.Controls.MetroLabel inputLabel;
         private MetroFramework.Controls.MetroLabel outputLabel;
         private MetroFramework.Controls.MetroLabel TRTime;
