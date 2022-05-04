@@ -42,13 +42,14 @@
             this.proceedButton = new MetroFramework.Controls.MetroButton();
             this.randomize = new MetroFramework.Controls.MetroButton();
             this.openFile = new MetroFramework.Controls.MetroButton();
+            this.statusLabel = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(23, 564);
+            this.panel1.Location = new System.Drawing.Point(23, 590);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(469, 103);
             this.panel1.TabIndex = 3;
@@ -58,7 +59,7 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(24, 177);
+            this.dataGridView1.Location = new System.Drawing.Point(24, 203);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(469, 139);
@@ -73,7 +74,7 @@
             // 
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(24, 361);
+            this.dataGridView2.Location = new System.Drawing.Point(24, 387);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 23;
             this.dataGridView2.Size = new System.Drawing.Size(469, 122);
@@ -93,7 +94,7 @@
             // inputLabel
             // 
             this.inputLabel.AutoSize = true;
-            this.inputLabel.Location = new System.Drawing.Point(23, 155);
+            this.inputLabel.Location = new System.Drawing.Point(23, 178);
             this.inputLabel.Name = "inputLabel";
             this.inputLabel.Size = new System.Drawing.Size(37, 19);
             this.inputLabel.TabIndex = 10;
@@ -103,7 +104,7 @@
             // outputLabel
             // 
             this.outputLabel.AutoSize = true;
-            this.outputLabel.Location = new System.Drawing.Point(24, 336);
+            this.outputLabel.Location = new System.Drawing.Point(24, 362);
             this.outputLabel.Name = "outputLabel";
             this.outputLabel.Size = new System.Drawing.Size(37, 19);
             this.outputLabel.TabIndex = 11;
@@ -113,7 +114,7 @@
             // TRTime
             // 
             this.TRTime.AutoSize = true;
-            this.TRTime.Location = new System.Drawing.Point(24, 501);
+            this.TRTime.Location = new System.Drawing.Point(24, 527);
             this.TRTime.Name = "TRTime";
             this.TRTime.Size = new System.Drawing.Size(104, 19);
             this.TRTime.TabIndex = 12;
@@ -122,7 +123,7 @@
             // avgRT
             // 
             this.avgRT.AutoSize = true;
-            this.avgRT.Location = new System.Drawing.Point(24, 526);
+            this.avgRT.Location = new System.Drawing.Point(24, 552);
             this.avgRT.Name = "avgRT";
             this.avgRT.Size = new System.Drawing.Size(104, 19);
             this.avgRT.TabIndex = 12;
@@ -187,11 +188,22 @@
             this.openFile.UseSelectable = true;
             this.openFile.Click += new System.EventHandler(this.OpenFile_Click);
             // 
+            // statusLabel
+            // 
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.Location = new System.Drawing.Point(23, 149);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(75, 19);
+            this.statusLabel.TabIndex = 15;
+            this.statusLabel.Text = "Status : idle";
+            this.statusLabel.Click += new System.EventHandler(this.metroLabel1_Click_1);
+            // 
             // Scheduling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(516, 747);
+            this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.algSelect);
             this.Controls.Add(this.proceedButton);
             this.Controls.Add(this.randomize);
@@ -230,6 +242,7 @@
         private MetroFramework.Controls.MetroLabel selectLabel;
         private MetroFramework.Controls.MetroButton randomize;
         private MetroFramework.Controls.MetroButton proceedButton;
+        private MetroFramework.Controls.MetroLabel statusLabel;
     }
 }
 

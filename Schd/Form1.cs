@@ -29,18 +29,38 @@ namespace Schd
             pView.Clear();
             pList.Clear();
 
-            //파일 오픈
-            path = SelectFilePath();
-            if (path == null) return;
-    
-            readText = File.ReadAllLines(path);
-            
-            //토큰 분리
-            for (int i = 0; i < readText.Length; i++)
+            Button btn = (Button)sender;
+            if (btn.Name == "randomize")
             {
-                string[] token = readText[i].Split(' ');
-                Process p = new Process(int.Parse(token[1]), int.Parse(token[2]), int.Parse(token[3]), int.Parse(token[4]));
-                pList.Add(p);
+                Form3 form3 = new Form3();
+                if (form3.ShowDialog() == DialogResult.OK)
+                {
+                    Random r = new Random();
+                    string[] ret = form3.getNumbers;
+                    int processes = int.Parse(ret[0]), arrival = int.Parse(ret[1]), burst = int.Parse(ret[2]);
+
+                    for (int i = 0; i < processes; i++)
+                    {
+                        Process p = new Process(i + 1, r.Next(arrival), r.Next(burst), 1);
+                        pList.Add(p);
+                    }
+                }
+            }
+            else
+            {
+                //파일 오픈
+                path = SelectFilePath();
+                if (path == null) return;
+
+                readText = File.ReadAllLines(path);
+
+                //토큰 분리
+                for (int i = 0; i < readText.Length; i++)
+                {
+                    string[] token = readText[i].Split(' ');
+                    Process p = new Process(int.Parse(token[1]), int.Parse(token[2]), int.Parse(token[3]), int.Parse(token[4]));
+                    pList.Add(p);
+                }
             }
 
             //Grid에 process 출력
@@ -92,27 +112,36 @@ namespace Schd
                 "Open the file, or generate the processes");
                 return;
             }
-            
 
             pBackup = pList.ConvertAll(x => new Process(x.processID, x.arriveTime, x.burstTime, x.priority));
 
             // Simulate scheduling
             switch (algSelect.GetItemText(algSelect.SelectedItem))
             {
+                case "":
+                    MetroFramework.MetroMessageBox.Show(
+                    this,
+                    "Select an algorithm");
+                    return;
+
                 case "FCFS":
                     resultList = AlgsFCFS.Run(pList, resultList);
+                    statusLabel.Text = "Status : FCFS completed.";
                     break;
 
                 case "SJF":
                     resultList = AlgsSJF.Run(pList, resultList);
+                    statusLabel.Text = "Status : SJF completed.";
                     break;
 
                 case "SRTF":
                     resultList = AlgsSRTF.Run(pList, resultList);
+                    statusLabel.Text = "Status : SRTF completed.";
                     break;
 
                 case "HRRN":
                     resultList = AlgsHRRN.Run(pList, resultList);
+                    statusLabel.Text = "Status : HRRN completed.";
                     break;
 
                 case "RR":
@@ -123,7 +152,8 @@ namespace Schd
                         else
                             return;
                     }
-                        break;
+                    statusLabel.Text = "Status : RR completed.";
+                    break;
             }
 
             //결과출력
@@ -147,61 +177,6 @@ namespace Schd
             panel1.Invalidate();
 
             pList = pBackup.ConvertAll(x => new Process(x.processID, x.arriveTime, x.burstTime, x.priority));
-        }
-
-        private DialogResult inputBox(string title, string content, ref string value)
-        {
-            Size size = new Size(300, 100);
-            //Create a new form using a System.Windows Form
-            MetroFramework.Forms.MetroForm inputBox = new MetroFramework.Forms.MetroForm();
-
-            inputBox.FormBorderStyle = FormBorderStyle.FixedDialog;
-            inputBox.ClientSize = size;
-            //Set the window title using the parameter passed
-            inputBox.Text = title;
-
-            //Create a new label to hold the prompt
-            MetroFramework.Controls.MetroLabel label = new MetroFramework.Controls.MetroLabel();
-            label.Text = title;
-            label.Location = new Point(5, 5);
-            label.Width = size.Width - 10;
-            //inputBox.Controls.Add(label);
-
-            //Create a textbox to accept the user's input
-            MetroFramework.Controls.MetroTextBox textBox = new MetroFramework.Controls.MetroTextBox();
-            textBox.Size = new Size(size.Width - 10, 30);
-            textBox.Location = new Point(5, label.Location.Y + 30);
-            textBox.Text = content;
-            inputBox.Controls.Add(textBox);
-
-            //Create an OK Button 
-            MetroFramework.Controls.MetroButton okButton = new MetroFramework.Controls.MetroButton();
-            okButton.DialogResult = DialogResult.OK;
-            okButton.Name = "okButton";
-            okButton.Size = new Size(75, 23);
-            okButton.Text = "&OK";
-            okButton.Location = new Point(size.Width - 80 - 80, size.Height - 25);
-            inputBox.Controls.Add(okButton);
-
-            //Create a Cancel Button
-            MetroFramework.Controls.MetroButton cancelButton = new MetroFramework.Controls.MetroButton();
-            cancelButton.DialogResult = DialogResult.Cancel;
-            cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(75, 23);
-            cancelButton.Text = "&Cancel";
-            cancelButton.Location = new Point(size.Width - 80, size.Height - 25);
-            inputBox.Controls.Add(cancelButton);
-
-            //Set the input box's buttons to the created OK and Cancel Buttons respectively so the window appropriately behaves with the button clicks
-            inputBox.AcceptButton = okButton;
-            inputBox.CancelButton = cancelButton;
-
-            //Show the window dialog box 
-            DialogResult result = inputBox.ShowDialog();
-            value = textBox.Text;
-
-            //After input has been submitted, return the input value
-            return result;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -256,6 +231,11 @@ namespace Schd
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroLabel1_Click_1(object sender, EventArgs e)
         {
 
         }

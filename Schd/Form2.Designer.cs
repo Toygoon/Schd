@@ -56,7 +56,10 @@ namespace Schd
             this.cancelButton.UseSelectable = true;
             // 
             // textBox
-            //
+            // 
+            // 
+            // 
+            // 
             this.textBox.CustomButton.Image = null;
             this.textBox.CustomButton.Location = new System.Drawing.Point(318, 1);
             this.textBox.CustomButton.Name = "";
@@ -93,6 +96,7 @@ namespace Schd
             this.Controls.Add(this.cancelButton);
             this.Name = "Form2";
             this.Text = "Set the time quantum.";
+            this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
 
         }
