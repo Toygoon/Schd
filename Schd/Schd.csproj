@@ -86,6 +86,7 @@
     <Compile Include="AlgsFCFS.cs" />
     <Compile Include="AlgsHRF.cs" />
     <Compile Include="AlgsHRRN.cs" />
+    <Compile Include="AlgsATR.cs" />
     <Compile Include="AlgsRR.cs" />
     <Compile Include="AlgsSJF.cs" />
     <Compile Include="AlgsSRTF.cs" />
