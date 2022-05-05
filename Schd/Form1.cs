@@ -45,6 +45,8 @@ namespace Schd
                         pList.Add(p);
                     }
                 }
+
+                statusLabel.Text = "Status : Generating process completed.";
             }
             else
             {
@@ -61,6 +63,8 @@ namespace Schd
                     Process p = new Process(int.Parse(token[1]), int.Parse(token[2]), int.Parse(token[3]), int.Parse(token[4]));
                     pList.Add(p);
                 }
+
+                statusLabel.Text = "Status : File loaded.";
             }
 
             //Grid에 process 출력
@@ -175,6 +179,7 @@ namespace Schd
             TRTime.Text = "전체 실행시간: " + (resultList[resultList.Count - 1].startP + resultList[resultList.Count - 1].burstTime).ToString();
             avgRT.Text = "평균 대기시간: " + (watingTime / resultList.Count).ToString();
             panel1.Invalidate();
+            formsPlot1_Paint(null, null);
 
             pList = pBackup.ConvertAll(x => new Process(x.processID, x.arriveTime, x.burstTime, x.priority));
         }
@@ -193,6 +198,24 @@ namespace Schd
                 e.Graphics.DrawString(r.waitingTime.ToString(), Font, Brushes.Black, startPosition + (r.startP * 10), resultListPosition + 80);
                 waitingTime += (double)r.waitingTime;
             }
+        }
+
+        private void formsPlot1_Paint(object sender, PaintEventArgs e)
+        {
+            var plt = formsPlot1.Plot;
+
+            double[] values = { 778, 43, 283, 76, 184 };
+            string[] labels = { "C#", "JAVA", "Python", "F#", "PHP" };
+
+            // modify labels to include a custom formatted value
+            labels = Enumerable.Range(0, values.Length)
+                   .Select(i => $"{labels[i]}\n({values[i]})")
+                   .ToArray();
+
+            formsPlot1.Refresh();
+            var pie = plt.AddPie(values);
+            pie.SliceLabels = labels;
+            pie.ShowLabels = true;
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
@@ -286,6 +309,22 @@ namespace Schd
             dataGridView2.Columns.Add(resultProcessColumn);
             dataGridView2.Columns.Add(resultBurstTimeColumn);
             dataGridView2.Columns.Add(resultWaitingTimeColumn);
+
+            var plt = formsPlot1.Plot;
+
+            double[] values = { 778, 43, 283, 76, 184 };
+            string[] labels = { "C#", "JAVA", "Python", "F#", "PHP" };
+
+            // modify labels to include a custom formatted value
+            labels = Enumerable.Range(0, values.Length)
+                   .Select(i => $"{labels[i]}\n({values[i]})")
+                   .ToArray();
+
+            formsPlot1.Refresh();
+            var pie = plt.AddPie(values);
+            pie.SliceLabels = labels;
+            pie.ShowLabels = true;
+            formsPlot1.Render();
         }
     }
 }

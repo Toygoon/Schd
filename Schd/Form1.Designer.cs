@@ -1,4 +1,6 @@
-﻿namespace Schd
+﻿using System.Linq;
+
+namespace Schd
 {
     partial class Scheduling
     {
@@ -43,6 +45,7 @@
             this.randomize = new MetroFramework.Controls.MetroButton();
             this.openFile = new MetroFramework.Controls.MetroButton();
             this.statusLabel = new MetroFramework.Controls.MetroLabel();
+            this.formsPlot1 = new ScottPlot.FormsPlot();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -83,7 +86,7 @@
             // 
             // resetButton
             // 
-            this.resetButton.Location = new System.Drawing.Point(14, 710);
+            this.resetButton.Location = new System.Drawing.Point(15, 913);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(75, 23);
             this.resetButton.TabIndex = 2;
@@ -198,11 +201,20 @@
             this.statusLabel.Text = "Status : idle";
             this.statusLabel.Click += new System.EventHandler(this.metroLabel1_Click_1);
             // 
+            // formsPlot1
+            // 
+            this.formsPlot1.Location = new System.Drawing.Point(23, 720);
+            this.formsPlot1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.formsPlot1.Name = "formsPlot1";
+            this.formsPlot1.Size = new System.Drawing.Size(467, 187);
+            this.formsPlot1.TabIndex = 16;
+            // 
             // Scheduling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 747);
+            this.ClientSize = new System.Drawing.Size(516, 959);
+            this.Controls.Add(this.formsPlot1);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.algSelect);
             this.Controls.Add(this.proceedButton);
@@ -243,6 +255,7 @@
         private MetroFramework.Controls.MetroButton randomize;
         private MetroFramework.Controls.MetroButton proceedButton;
         private MetroFramework.Controls.MetroLabel statusLabel;
+        private ScottPlot.FormsPlot formsPlot1;
     }
 }
 
