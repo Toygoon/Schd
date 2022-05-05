@@ -44,9 +44,9 @@ namespace Schd
                         Process p = new Process(i + 1, r.Next(arrival), r.Next(burst), 1);
                         pList.Add(p);
                     }
-                }
 
-                statusLabel.Text = "Status : Generating process completed.";
+                    statusLabel.Text = "Status : Generating process completed.";
+                }
             }
             else
             {

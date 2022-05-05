@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace Schd
 {
     /// <summary>
     /// Highest Response ratio First Algorithm Simulation
-    /// HRF algorithm is preemptive HRRN algorithm
+    /// HRF algorithm is a HRRN algorithm that has preemptive policy
     /// Algorithm author : Lim Jung Min (Advanced Computer Systems Laboratory, Yeungnam University)
     /// </summary>
     class AlgsHRF
@@ -76,6 +75,7 @@ namespace Schd
                     for (int i = 0; i < readyQueue.Count; i++)
                         ratio.Add(readyQueue[i].processID, calcRatio(readyQueue[i].burstTime, readyQueue[i].waitingTime));
 
+                    // Because highest ratio of the process will be executed, sort the list of ratio and execute from the its last index
                     var highest = ratio.OrderBy(x => x.Value).Last();
                     next = readyQueue.IndexOf(readyQueue.Find(x => x.processID == highest.Key));
                 }
@@ -108,7 +108,6 @@ namespace Schd
                         break;
                     }
 
-
                     // Execute the process
                     clock++;
                     exec.burstTime--;
@@ -121,32 +120,30 @@ namespace Schd
 
                     // Recalculate ratio
                     ratio = new Dictionary<int, double>();
-
+                    // Add to the ratio list which is the ratio of the current process executing
                     ratio.Add(exec.processID, calcRatio(exec.burstTime, exec.waitingTime));
 
+                    // Add the calculated ratio of another processes
                     for (int i = 0; i < readyQueue.Count; i++)
                     {
+                        // Update existing value when the key exists
                         if (ratio.ContainsKey(readyQueue[i].processID))
                             ratio[readyQueue[i].processID] = calcRatio(readyQueue[i].burstTime, readyQueue[i].waitingTime);
                         else
                             ratio.Add(readyQueue[i].processID, calcRatio(readyQueue[i].burstTime, readyQueue[i].waitingTime));
                     }
 
+                    // Select the process preempted
                     var highest = ratio.OrderBy(x => x.Value).Last();
 
-                    ReadyQueueElement tmp = readyQueue.Find(x => x.processID == highest.Key);
-                    Debug.WriteLine("clock " + clock + ", pid " + exec.processID + ", ratio : " + calcRatio(exec.burstTime, exec.waitingTime));
-
-                    //Debug.WriteLine("highest : " + highest.Key + ", burstTime : " + tmp.burstTime + ", waitingTime : " + tmp.waitingTime + ", ratio : " + highest.Value);
-
-                    if (ratio[exec.processID] < highest.Value)
+                    // Change the current process to highest ratio process
+                    if (ratio[exec.processID] < highest.Value && exec.burstTime != 0)
                     {
-                        Debug.WriteLine("Preempt");
                         readyQueue.Add(exec);
+                        resultList.Add(new Result(exec.processID, clock - timeBursted, timeBursted, exec.waitingTime));
 
                         next = readyQueue.IndexOf(readyQueue.Find(x => x.processID == highest.Key));
                         exec = readyQueue[next];
-                        resultList.Add(new Result(exec.processID, clock - timeBursted, timeBursted, exec.waitingTime));
 
                         jobList.Remove(jobList.Find(x => x.processID == exec.processID));
                         readyQueue.RemoveAt(next);
