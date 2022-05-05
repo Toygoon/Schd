@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using ScottPlot;
 
 namespace Schd
 {
@@ -175,23 +176,32 @@ namespace Schd
 
             string[] row = { "", "", "", "" };
 
-            double watingTime = 0.0;
+            double waitingTime = 0.0;
             foreach (Result r in resultList)
             {
                 row[0] = r.processID.ToString();
                 row[1] = r.burstTime.ToString();
                 row[2] = r.waitingTime.ToString();
-                watingTime += r.waitingTime;
+                waitingTime += r.waitingTime;
 
                 dataGridView2.Rows.Add(row);
             }
 
             TRTime.Text = "전체 실행시간: " + (resultList[resultList.Count - 1].startP + resultList[resultList.Count - 1].burstTime).ToString();
-            avgRT.Text = "평균 대기시간: " + (watingTime / resultList.Count).ToString();
+            avgRT.Text = "평균 대기시간: " + (waitingTime / resultList.Count).ToString();
             panel1.Invalidate();
-            formsPlot1_Paint(null, null);
 
             pList = pBackup.ConvertAll(x => new Process(x.processID, x.arriveTime, x.burstTime, x.priority));
+
+            Dictionary<int, int> waitingTimeList = new Dictionary<int, int>();
+
+            for (int i = 0; i<pList.Count; i++)
+                waitingTimeList.Add(pList[i].processID, 0);
+
+            for (int i = 0; i<resultList.Count; i++)
+                waitingTimeList[resultList[i].processID] += resultList[i].waitingTime;
+
+            formsPlot1_Paint(waitingTimeList);
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -210,22 +220,22 @@ namespace Schd
             }
         }
 
-        private void formsPlot1_Paint(object sender, PaintEventArgs e)
+        private void formsPlot1_Paint(Dictionary<int, int> list)
         {
             var plt = formsPlot1.Plot;
+            plt.Clear();
 
-            double[] values = { 778, 43, 283, 76, 184 };
-            string[] labels = { "C#", "JAVA", "Python", "F#", "PHP" };
+            double[] waitingTime = list.Values.Select(x => (double)x).ToArray();
+            string[] processID = list.Keys.Select(x => x.ToString()).ToArray();
 
-            // modify labels to include a custom formatted value
-            labels = Enumerable.Range(0, values.Length)
-                   .Select(i => $"{labels[i]}\n({values[i]})")
-                   .ToArray();
+            var pie = plt.AddPie(waitingTime);
+            pie.SliceLabels = processID;
+            pie.ShowLabels = true;
+
+            formsPlot1.Plot.Legend();
+            formsPlot1.Plot.Render();
 
             formsPlot1.Refresh();
-            var pie = plt.AddPie(values);
-            pie.SliceLabels = labels;
-            pie.ShowLabels = true;
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
@@ -320,20 +330,11 @@ namespace Schd
             dataGridView2.Columns.Add(resultBurstTimeColumn);
             dataGridView2.Columns.Add(resultWaitingTimeColumn);
 
+            // Initialize pie graph
             var plt = formsPlot1.Plot;
-
             double[] values = { 778, 43, 283, 76, 184 };
-            string[] labels = { "C#", "JAVA", "Python", "F#", "PHP" };
-
-            // modify labels to include a custom formatted value
-            labels = Enumerable.Range(0, values.Length)
-                   .Select(i => $"{labels[i]}\n({values[i]})")
-                   .ToArray();
-
             formsPlot1.Refresh();
             var pie = plt.AddPie(values);
-            pie.SliceLabels = labels;
-            pie.ShowLabels = true;
             formsPlot1.Render();
         }
     }

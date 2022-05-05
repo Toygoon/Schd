@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 
 namespace Schd
 {
@@ -78,11 +76,14 @@ namespace Schd
                     tq = getAverage(readyQueue, clock);
                     if (tq == 0)
                         tq = 1;
-                    Debug.WriteLine("clock " + clock + ", tq : " + tq);
 
                     // Time quantum expired, or burst time ended
                     if (exec.burstTime == 0 || timeBursted >= tq)
                     {
+                        // If there's only single process in the readyQueue, keep execute it
+                        if (readyQueue.Count == 1 && exec.burstTime != 0)
+                            continue;
+
                         // Find out from the job queue
                         Process tmp = jobList.Find(x => x.processID == exec.processID);
 
