@@ -1,28 +1,34 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace Schd
 {
     /// <summary>
-    /// Highest Response Ratio Next Algorithm Simulation
-    /// By Lim Jung Min (Advanced Computer Systems Laboratory, Yeungnam University)
+    /// Highest Response ratio First Algorithm Simulation
+    /// HRF algorithm is preemptive HRRN algorithm
+    /// Algorithm author : Lim Jung Min (Advanced Computer Systems Laboratory, Yeungnam University)
     /// </summary>
-    class AlgsHRRN
+    class AlgsHRF
     {
         /// <summary>
-        /// calcHRRN function calculates and returns the priority;
+        /// HRF algorithm uses same ratio calculation used from HRRN
+        /// calcRatio function calculates and returns the priority;
         /// (waiting time + estimated run time) / estimated run time
         /// </summary>
         /// <param name="burstTime">Burst time of current process</param>
         /// <param name="waitingTime">Waiting time of current process</param>
         /// <returns>Calculated priority</returns>
-        public static double calcHRRN(int burstTime, int waitingTime)
+        public static double calcRatio(int burstTime, int waitingTime)
         {
+            if (waitingTime == 0)
+                return 0;
+
             return (waitingTime + burstTime) / (double)burstTime;
         }
 
         /// <summary>
-        /// Run function makes the results for executing processes with HRRN algorithm to the list
+        /// Run function makes the results for executing processes with HRF algorithm to the list
         /// </summary>
         /// <param name="jobList">Job queue of processes</param>
         /// <param name="resultList">The result list to be filled</param>
@@ -68,7 +74,7 @@ namespace Schd
 
                     // Determine which process should be executed for the next with HRRN calculation
                     for (int i = 0; i < readyQueue.Count; i++)
-                        ratio.Add(readyQueue[i].processID, calcHRRN(readyQueue[i].burstTime, readyQueue[i].waitingTime));
+                        ratio.Add(readyQueue[i].processID, calcRatio(readyQueue[i].burstTime, readyQueue[i].waitingTime));
 
                     var highest = ratio.OrderBy(x => x.Value).Last();
                     next = readyQueue.IndexOf(readyQueue.Find(x => x.processID == highest.Key));
@@ -102,6 +108,7 @@ namespace Schd
                         break;
                     }
 
+
                     // Execute the process
                     clock++;
                     exec.burstTime--;
@@ -111,6 +118,41 @@ namespace Schd
                     for (int i = 0; i < readyQueue.Count; i++)
                         if (next != i)
                             readyQueue[i].waitingTime++;
+
+                    // Recalculate ratio
+                    ratio = new Dictionary<int, double>();
+
+                    ratio.Add(exec.processID, calcRatio(exec.burstTime, exec.waitingTime));
+
+                    for (int i = 0; i < readyQueue.Count; i++)
+                    {
+                        if (ratio.ContainsKey(readyQueue[i].processID))
+                            ratio[readyQueue[i].processID] = calcRatio(readyQueue[i].burstTime, readyQueue[i].waitingTime);
+                        else
+                            ratio.Add(readyQueue[i].processID, calcRatio(readyQueue[i].burstTime, readyQueue[i].waitingTime));
+                    }
+
+                    var highest = ratio.OrderBy(x => x.Value).Last();
+
+                    ReadyQueueElement tmp = readyQueue.Find(x => x.processID == highest.Key);
+                    Debug.WriteLine("clock " + clock + ", pid " + exec.processID + ", ratio : " + calcRatio(exec.burstTime, exec.waitingTime));
+
+                    //Debug.WriteLine("highest : " + highest.Key + ", burstTime : " + tmp.burstTime + ", waitingTime : " + tmp.waitingTime + ", ratio : " + highest.Value);
+
+                    if (ratio[exec.processID] < highest.Value)
+                    {
+                        Debug.WriteLine("Preempt");
+                        readyQueue.Add(exec);
+
+                        next = readyQueue.IndexOf(readyQueue.Find(x => x.processID == highest.Key));
+                        exec = readyQueue[next];
+                        resultList.Add(new Result(exec.processID, clock - timeBursted, timeBursted, exec.waitingTime));
+
+                        jobList.Remove(jobList.Find(x => x.processID == exec.processID));
+                        readyQueue.RemoveAt(next);
+
+                        timeBursted = 0;
+                    }
                 }
 
                 // Current process is done, so reset the bursted time

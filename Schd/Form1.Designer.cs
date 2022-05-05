@@ -141,7 +141,8 @@ namespace Schd
             "SJF",
             "SRTF",
             "HRRN",
-            "RR"});
+            "RR",
+            "HRF"});
             this.algSelect.Location = new System.Drawing.Point(263, 102);
             this.algSelect.Name = "algSelect";
             this.algSelect.Size = new System.Drawing.Size(131, 29);

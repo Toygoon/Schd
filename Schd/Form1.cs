@@ -158,6 +158,11 @@ namespace Schd
                     }
                     statusLabel.Text = "Status : RR completed.";
                     break;
+
+                case "HRF":
+                    resultList = AlgsHRF.Run(pList, resultList);
+                    statusLabel.Text = "Status : HRF completed.";
+                    break;
             }
 
             //결과출력
