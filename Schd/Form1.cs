@@ -42,7 +42,11 @@ namespace Schd
 
                     for (int i = 0; i < processes; i++)
                     {
-                        Process p = new Process(i + 1, r.Next(arrival), r.Next(burst), 1);
+                        int randBurst = 0;
+                        while (randBurst == 0)
+                            randBurst = r.Next(burst);
+
+                        Process p = new Process(i + 1, r.Next(arrival), randBurst, 1);
                         pList.Add(p);
                     }
 
