@@ -238,7 +238,7 @@ namespace Schd
             // 
             // exportButton
             // 
-            this.exportButton.BackgroundImage = global::Schd.Properties.Resources.random_scaled;
+            this.exportButton.BackgroundImage = global::Schd.Properties.Resources.export_scaled;
             this.exportButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.exportButton.Location = new System.Drawing.Point(390, 75);
             this.exportButton.Name = "exportButton";
