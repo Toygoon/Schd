@@ -102,7 +102,8 @@ namespace Schd
 
         private string SelectFilePath()
         {
-            openFileDialog1.Filter = "텍스트파일|*.txt";
+            openFileDialog1.Filter = "텍스트 파일|*.txt";
+            openFileDialog1.InitialDirectory = Directory.GetCurrentDirectory();
             return (openFileDialog1.ShowDialog() == DialogResult.OK) ? openFileDialog1.FileName : null;
         }
 
@@ -115,9 +116,16 @@ namespace Schd
 
         private void Export_Click(object sender, EventArgs e)
         {
-            // add rr tq
+            if (resultDataList.Count == 0)
+            {
+                MetroFramework.MetroMessageBox.Show(
+                this,
+                "No results to save.");
+                return;
+            }
+
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "텍스트파일|*.txt";
+            sfd.Filter = "텍스트 파일|*.txt";
             sfd.ShowDialog();
 
             if (sfd.FileName == "")
@@ -129,6 +137,9 @@ namespace Schd
             {
                 sb.AppendLine("[Run " + (i + 1) + "]");
                 sb.AppendLine("* Scheduling Algorithm : " + resultDataList[i].algsType);
+
+                if (resultDataList[i].algsType == "RR")
+                    sb.AppendLine("* Time Quantum : " + resultDataList[i].timeQuantum);
 
                 sb.AppendLine("\n*** Summary of Execution Time ***");
                 sb.AppendLine("* Total Processes : " + resultDataList[i].resultList.Count);
@@ -143,10 +154,13 @@ namespace Schd
             }
 
             File.WriteAllText(sfd.FileName, sb.ToString());
+            statusLabel.Text = "Status : Result text file saved to " + sfd.FileName.Substring(sfd.FileName.LastIndexOf('\\') + 1);
         }
 
         private void Run_Click(object sender, EventArgs e)
         {
+            int timeQuantum = -1;
+
             if (!readFile)
             {
                 MetroFramework.MetroMessageBox.Show(
@@ -189,8 +203,9 @@ namespace Schd
                 case "RR":
                     using (Form2 form2 = new Form2())
                     {
+                        timeQuantum = int.Parse(form2.getQuantum);
                         if (form2.ShowDialog() == DialogResult.OK)
-                            resultList = AlgsRR.Run(pList, resultList, int.Parse(form2.getQuantum));
+                            resultList = AlgsRR.Run(pList, resultList, timeQuantum);
                         else
                             return;
                     }
@@ -248,6 +263,8 @@ namespace Schd
             formsPlot1_Paint(waitingTimeList);
 
             resultData.algsType = algSelect.GetItemText(algSelect.SelectedItem);
+            if (resultData.algsType == "RR")
+                resultData.timeQuantum = timeQuantum;
             resultData.totalExecTime = totalExecTime;
             resultData.avgWaitingTime = avgWaitingTime;
             resultData.resultList = resultList;

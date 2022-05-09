@@ -13,6 +13,7 @@ namespace Schd
         public Dictionary<int, int> waitingTimeList;
         public int totalExecTime;
         public double avgWaitingTime;
+        public int timeQuantum;
     }
 
 }
