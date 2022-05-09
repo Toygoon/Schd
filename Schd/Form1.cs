@@ -19,6 +19,7 @@ namespace Schd
         private bool readFile = false;
         List<Process> pList, pView, pBackup;
         List<Result> resultList;
+        int calcTimes = 0;
 
         public Scheduling()
         {

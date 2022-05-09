@@ -46,13 +46,16 @@ namespace Schd
             this.openFile = new MetroFramework.Controls.MetroButton();
             this.statusLabel = new MetroFramework.Controls.MetroLabel();
             this.formsPlot1 = new ScottPlot.FormsPlot();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(24, 443);
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(526, 200);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(469, 103);
             this.panel1.TabIndex = 3;
@@ -78,7 +81,7 @@ namespace Schd
             // 
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(526, 203);
+            this.dataGridView2.Location = new System.Drawing.Point(24, 405);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 82;
             this.dataGridView2.RowTemplate.Height = 23;
@@ -109,7 +112,7 @@ namespace Schd
             // outputLabel
             // 
             this.outputLabel.AutoSize = true;
-            this.outputLabel.Location = new System.Drawing.Point(526, 178);
+            this.outputLabel.Location = new System.Drawing.Point(24, 380);
             this.outputLabel.Name = "outputLabel";
             this.outputLabel.Size = new System.Drawing.Size(37, 19);
             this.outputLabel.TabIndex = 11;
@@ -119,7 +122,7 @@ namespace Schd
             // TRTime
             // 
             this.TRTime.AutoSize = true;
-            this.TRTime.Location = new System.Drawing.Point(25, 380);
+            this.TRTime.Location = new System.Drawing.Point(526, 552);
             this.TRTime.Name = "TRTime";
             this.TRTime.Size = new System.Drawing.Size(104, 19);
             this.TRTime.TabIndex = 12;
@@ -128,7 +131,7 @@ namespace Schd
             // avgRT
             // 
             this.avgRT.AutoSize = true;
-            this.avgRT.Location = new System.Drawing.Point(25, 405);
+            this.avgRT.Location = new System.Drawing.Point(526, 577);
             this.avgRT.Name = "avgRT";
             this.avgRT.Size = new System.Drawing.Size(104, 19);
             this.avgRT.TabIndex = 12;
@@ -207,11 +210,30 @@ namespace Schd
             // 
             // formsPlot1
             // 
-            this.formsPlot1.Location = new System.Drawing.Point(528, 405);
+            this.formsPlot1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.formsPlot1.Location = new System.Drawing.Point(528, 343);
             this.formsPlot1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.formsPlot1.Name = "formsPlot1";
             this.formsPlot1.Size = new System.Drawing.Size(467, 187);
             this.formsPlot1.TabIndex = 16;
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.Location = new System.Drawing.Point(526, 178);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(77, 19);
+            this.metroLabel1.TabIndex = 12;
+            this.metroLabel1.Text = "Gantt Chart";
+            // 
+            // metroLabel2
+            // 
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.Location = new System.Drawing.Point(526, 318);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(86, 19);
+            this.metroLabel2.TabIndex = 12;
+            this.metroLabel2.Text = "Waiting Time";
             // 
             // Scheduling
             // 
@@ -224,6 +246,8 @@ namespace Schd
             this.Controls.Add(this.proceedButton);
             this.Controls.Add(this.randomize);
             this.Controls.Add(this.openFile);
+            this.Controls.Add(this.metroLabel2);
+            this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.avgRT);
             this.Controls.Add(this.TRTime);
             this.Controls.Add(this.outputLabel);
@@ -260,6 +284,8 @@ namespace Schd
         private MetroFramework.Controls.MetroButton proceedButton;
         private MetroFramework.Controls.MetroLabel statusLabel;
         private ScottPlot.FormsPlot formsPlot1;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroLabel metroLabel2;
     }
 }
 
