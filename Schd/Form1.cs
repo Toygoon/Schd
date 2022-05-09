@@ -19,7 +19,7 @@ namespace Schd
         private bool readFile = false;
         List<Process> pList, pView, pBackup;
         List<Result> resultList;
-        int calcTimes = 0;
+        List<ResultData> resultDataList = new List<ResultData>();
 
         public Scheduling()
         {
@@ -113,6 +113,38 @@ namespace Schd
             this.Dispose(false);
         }
 
+        private void Export_Click(object sender, EventArgs e)
+        {
+            // add rr tq
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "텍스트파일|*.txt";
+            sfd.ShowDialog();
+
+            if (sfd.FileName == "")
+                return;
+
+            var sb = new System.Text.StringBuilder();
+
+            for (int i = 0; i < resultDataList.Count; i++)
+            {
+                sb.AppendLine("[Run " + (i + 1) + "]");
+                sb.AppendLine("* Scheduling Algorithm : " + resultDataList[i].algsType);
+
+                sb.AppendLine("\n*** Summary of Execution Time ***");
+                sb.AppendLine("* Total Processes : " + resultDataList[i].resultList.Count);
+                sb.AppendLine("* Total Execution Time : " + resultDataList[i].totalExecTime);
+                sb.AppendLine("* Average Waiting Time : " + resultDataList[i].avgWaitingTime);
+
+                sb.AppendLine("\n*** Result of Execution for the Processes ***");
+                foreach (var v in resultDataList[i].resultList)
+                    sb.AppendLine("Process " + v.processID + " : Started at " + v.startP + ", burst time : " + v.burstTime + ", waiting time : " + v.waitingTime);
+
+                sb.AppendLine("\n");
+            }
+
+            File.WriteAllText(sfd.FileName, sb.ToString());
+        }
+
         private void Run_Click(object sender, EventArgs e)
         {
             if (!readFile)
@@ -192,21 +224,35 @@ namespace Schd
                 dataGridView2.Rows.Add(row);
             }
 
-            TRTime.Text = "전체 실행시간: " + (resultList[resultList.Count - 1].startP + resultList[resultList.Count - 1].burstTime).ToString();
-            avgRT.Text = "평균 대기시간: " + (waitingTime / resultList.Count).ToString();
+            ResultData resultData = new ResultData();
+
+            int totalExecTime = resultList[resultList.Count - 1].startP + resultList[resultList.Count - 1].burstTime;
+            double avgWaitingTime = waitingTime / resultList.Count;
+
+            TRTime.Text = "전체 실행시간: " + totalExecTime.ToString();
+            avgRT.Text = "평균 대기시간: " + avgWaitingTime.ToString();
             panel1.Invalidate();
 
+            // Backup imported current processes
             pList = pBackup.ConvertAll(x => new Process(x.processID, x.arriveTime, x.burstTime, x.priority));
 
+            // Draw a pie graph
             Dictionary<int, int> waitingTimeList = new Dictionary<int, int>();
 
-            for (int i = 0; i<pList.Count; i++)
+            for (int i = 0; i < pList.Count; i++)
                 waitingTimeList.Add(pList[i].processID, 0);
 
-            for (int i = 0; i<resultList.Count; i++)
+            for (int i = 0; i < resultList.Count; i++)
                 waitingTimeList[resultList[i].processID] += resultList[i].waitingTime;
 
             formsPlot1_Paint(waitingTimeList);
+
+            resultData.algsType = algSelect.GetItemText(algSelect.SelectedItem);
+            resultData.totalExecTime = totalExecTime;
+            resultData.avgWaitingTime = avgWaitingTime;
+            resultData.resultList = resultList;
+            resultData.waitingTimeList = waitingTimeList;
+            resultDataList.Add(resultData);
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

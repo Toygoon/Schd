@@ -48,6 +48,7 @@ namespace Schd
             this.formsPlot1 = new ScottPlot.FormsPlot();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.exportButton = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -180,7 +181,7 @@ namespace Schd
             // 
             this.randomize.BackgroundImage = global::Schd.Properties.Resources.random_scaled;
             this.randomize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.randomize.Location = new System.Drawing.Point(380, 75);
+            this.randomize.Location = new System.Drawing.Point(294, 75);
             this.randomize.Name = "randomize";
             this.randomize.Size = new System.Drawing.Size(66, 58);
             this.randomize.TabIndex = 13;
@@ -191,7 +192,7 @@ namespace Schd
             // 
             this.openFile.BackgroundImage = global::Schd.Properties.Resources.fileopen_scaled;
             this.openFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.openFile.Location = new System.Drawing.Point(289, 75);
+            this.openFile.Location = new System.Drawing.Point(203, 75);
             this.openFile.Name = "openFile";
             this.openFile.Size = new System.Drawing.Size(66, 58);
             this.openFile.TabIndex = 13;
@@ -235,6 +236,17 @@ namespace Schd
             this.metroLabel2.TabIndex = 12;
             this.metroLabel2.Text = "Waiting Time";
             // 
+            // exportButton
+            // 
+            this.exportButton.BackgroundImage = global::Schd.Properties.Resources.random_scaled;
+            this.exportButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.exportButton.Location = new System.Drawing.Point(390, 75);
+            this.exportButton.Name = "exportButton";
+            this.exportButton.Size = new System.Drawing.Size(66, 58);
+            this.exportButton.TabIndex = 13;
+            this.exportButton.UseSelectable = true;
+            this.exportButton.Click += new System.EventHandler(this.Export_Click);
+            // 
             // Scheduling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -244,6 +256,7 @@ namespace Schd
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.algSelect);
             this.Controls.Add(this.proceedButton);
+            this.Controls.Add(this.exportButton);
             this.Controls.Add(this.randomize);
             this.Controls.Add(this.openFile);
             this.Controls.Add(this.metroLabel2);
@@ -286,6 +299,7 @@ namespace Schd
         private ScottPlot.FormsPlot formsPlot1;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroLabel metroLabel2;
+        private MetroFramework.Controls.MetroButton exportButton;
     }
 }
 
