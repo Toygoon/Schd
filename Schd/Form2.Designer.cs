@@ -30,6 +30,7 @@ namespace Schd
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.okButton = new MetroFramework.Controls.MetroButton();
             this.cancelButton = new MetroFramework.Controls.MetroButton();
             this.textBox = new MetroFramework.Controls.MetroTextBox();
@@ -94,6 +95,7 @@ namespace Schd
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.cancelButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
             this.Text = "Set the time quantum.";
             this.Load += new System.EventHandler(this.Form2_Load);

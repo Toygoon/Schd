@@ -30,6 +30,7 @@ namespace Schd
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Scheduling));
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -56,9 +57,10 @@ namespace Schd
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(526, 200);
+            this.panel1.Location = new System.Drawing.Point(977, 400);
+            this.panel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(469, 103);
+            this.panel1.Size = new System.Drawing.Size(869, 204);
             this.panel1.TabIndex = 3;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -66,11 +68,12 @@ namespace Schd
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(24, 203);
+            this.dataGridView1.Location = new System.Drawing.Point(45, 406);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(469, 139);
+            this.dataGridView1.Size = new System.Drawing.Size(871, 278);
             this.dataGridView1.TabIndex = 4;
             // 
             // openFileDialog1
@@ -82,19 +85,21 @@ namespace Schd
             // 
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(24, 405);
+            this.dataGridView2.Location = new System.Drawing.Point(45, 810);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 82;
             this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(469, 139);
+            this.dataGridView2.Size = new System.Drawing.Size(871, 278);
             this.dataGridView2.TabIndex = 7;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // resetButton
             // 
-            this.resetButton.Location = new System.Drawing.Point(23, 585);
+            this.resetButton.Location = new System.Drawing.Point(43, 1170);
+            this.resetButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.resetButton.Name = "resetButton";
-            this.resetButton.Size = new System.Drawing.Size(75, 23);
+            this.resetButton.Size = new System.Drawing.Size(139, 46);
             this.resetButton.TabIndex = 2;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
@@ -103,7 +108,8 @@ namespace Schd
             // inputLabel
             // 
             this.inputLabel.AutoSize = true;
-            this.inputLabel.Location = new System.Drawing.Point(23, 178);
+            this.inputLabel.Location = new System.Drawing.Point(43, 356);
+            this.inputLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.inputLabel.Name = "inputLabel";
             this.inputLabel.Size = new System.Drawing.Size(37, 19);
             this.inputLabel.TabIndex = 10;
@@ -113,7 +119,8 @@ namespace Schd
             // outputLabel
             // 
             this.outputLabel.AutoSize = true;
-            this.outputLabel.Location = new System.Drawing.Point(24, 380);
+            this.outputLabel.Location = new System.Drawing.Point(45, 760);
+            this.outputLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.outputLabel.Name = "outputLabel";
             this.outputLabel.Size = new System.Drawing.Size(37, 19);
             this.outputLabel.TabIndex = 11;
@@ -123,7 +130,8 @@ namespace Schd
             // TRTime
             // 
             this.TRTime.AutoSize = true;
-            this.TRTime.Location = new System.Drawing.Point(526, 552);
+            this.TRTime.Location = new System.Drawing.Point(977, 1104);
+            this.TRTime.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.TRTime.Name = "TRTime";
             this.TRTime.Size = new System.Drawing.Size(104, 19);
             this.TRTime.TabIndex = 12;
@@ -132,7 +140,8 @@ namespace Schd
             // avgRT
             // 
             this.avgRT.AutoSize = true;
-            this.avgRT.Location = new System.Drawing.Point(526, 577);
+            this.avgRT.Location = new System.Drawing.Point(977, 1154);
+            this.avgRT.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.avgRT.Name = "avgRT";
             this.avgRT.Size = new System.Drawing.Size(104, 19);
             this.avgRT.TabIndex = 12;
@@ -150,16 +159,18 @@ namespace Schd
             "RR",
             "HRF",
             "ATR"});
-            this.algSelect.Location = new System.Drawing.Point(526, 104);
+            this.algSelect.Location = new System.Drawing.Point(977, 208);
+            this.algSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.algSelect.Name = "algSelect";
-            this.algSelect.Size = new System.Drawing.Size(131, 29);
+            this.algSelect.Size = new System.Drawing.Size(240, 29);
             this.algSelect.TabIndex = 14;
             this.algSelect.UseSelectable = true;
             // 
             // selectLabel
             // 
             this.selectLabel.AutoSize = true;
-            this.selectLabel.Location = new System.Drawing.Point(526, 75);
+            this.selectLabel.Location = new System.Drawing.Point(977, 150);
+            this.selectLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.selectLabel.Name = "selectLabel";
             this.selectLabel.Size = new System.Drawing.Size(37, 19);
             this.selectLabel.TabIndex = 10;
@@ -170,9 +181,10 @@ namespace Schd
             // 
             this.proceedButton.BackgroundImage = global::Schd.Properties.Resources.ok_scaled;
             this.proceedButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.proceedButton.Location = new System.Drawing.Point(689, 75);
+            this.proceedButton.Location = new System.Drawing.Point(1280, 150);
+            this.proceedButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.proceedButton.Name = "proceedButton";
-            this.proceedButton.Size = new System.Drawing.Size(66, 58);
+            this.proceedButton.Size = new System.Drawing.Size(123, 116);
             this.proceedButton.TabIndex = 13;
             this.proceedButton.UseSelectable = true;
             this.proceedButton.Click += new System.EventHandler(this.Run_Click);
@@ -181,9 +193,10 @@ namespace Schd
             // 
             this.randomize.BackgroundImage = global::Schd.Properties.Resources.random_scaled;
             this.randomize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.randomize.Location = new System.Drawing.Point(294, 75);
+            this.randomize.Location = new System.Drawing.Point(546, 150);
+            this.randomize.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.randomize.Name = "randomize";
-            this.randomize.Size = new System.Drawing.Size(66, 58);
+            this.randomize.Size = new System.Drawing.Size(123, 116);
             this.randomize.TabIndex = 13;
             this.randomize.UseSelectable = true;
             this.randomize.Click += new System.EventHandler(this.OpenFile_Click);
@@ -192,9 +205,10 @@ namespace Schd
             // 
             this.openFile.BackgroundImage = global::Schd.Properties.Resources.fileopen_scaled;
             this.openFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.openFile.Location = new System.Drawing.Point(203, 75);
+            this.openFile.Location = new System.Drawing.Point(377, 150);
+            this.openFile.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.openFile.Name = "openFile";
-            this.openFile.Size = new System.Drawing.Size(66, 58);
+            this.openFile.Size = new System.Drawing.Size(123, 116);
             this.openFile.TabIndex = 13;
             this.openFile.UseSelectable = true;
             this.openFile.Click += new System.EventHandler(this.OpenFile_Click);
@@ -202,7 +216,8 @@ namespace Schd
             // statusLabel
             // 
             this.statusLabel.AutoSize = true;
-            this.statusLabel.Location = new System.Drawing.Point(23, 149);
+            this.statusLabel.Location = new System.Drawing.Point(43, 298);
+            this.statusLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(75, 19);
             this.statusLabel.TabIndex = 15;
@@ -212,16 +227,17 @@ namespace Schd
             // formsPlot1
             // 
             this.formsPlot1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.formsPlot1.Location = new System.Drawing.Point(528, 343);
-            this.formsPlot1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.formsPlot1.Location = new System.Drawing.Point(981, 686);
+            this.formsPlot1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.formsPlot1.Name = "formsPlot1";
-            this.formsPlot1.Size = new System.Drawing.Size(467, 187);
+            this.formsPlot1.Size = new System.Drawing.Size(866, 372);
             this.formsPlot1.TabIndex = 16;
             // 
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(526, 178);
+            this.metroLabel1.Location = new System.Drawing.Point(977, 356);
+            this.metroLabel1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(77, 19);
             this.metroLabel1.TabIndex = 12;
@@ -230,7 +246,8 @@ namespace Schd
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(526, 318);
+            this.metroLabel2.Location = new System.Drawing.Point(977, 636);
+            this.metroLabel2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(86, 19);
             this.metroLabel2.TabIndex = 12;
@@ -240,18 +257,19 @@ namespace Schd
             // 
             this.exportButton.BackgroundImage = global::Schd.Properties.Resources.export_scaled;
             this.exportButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.exportButton.Location = new System.Drawing.Point(390, 75);
+            this.exportButton.Location = new System.Drawing.Point(724, 150);
+            this.exportButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.exportButton.Name = "exportButton";
-            this.exportButton.Size = new System.Drawing.Size(66, 58);
+            this.exportButton.Size = new System.Drawing.Size(123, 116);
             this.exportButton.TabIndex = 13;
             this.exportButton.UseSelectable = true;
             this.exportButton.Click += new System.EventHandler(this.Export_Click);
             // 
             // Scheduling
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1033, 631);
+            this.ClientSize = new System.Drawing.Size(1918, 1262);
             this.Controls.Add(this.formsPlot1);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.algSelect);
@@ -270,7 +288,10 @@ namespace Schd
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "Scheduling";
+            this.Padding = new System.Windows.Forms.Padding(37, 120, 37, 40);
             this.Text = "CPU Scheduling";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

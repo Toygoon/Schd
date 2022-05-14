@@ -30,6 +30,7 @@ namespace Schd
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
             this.okButton = new MetroFramework.Controls.MetroButton();
             this.cancelButton = new MetroFramework.Controls.MetroButton();
             this.processInput = new MetroFramework.Controls.MetroTextBox();
@@ -200,6 +201,7 @@ namespace Schd
             this.Controls.Add(this.processInput);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.cancelButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form3";
             this.Text = "Set the numbers";
             this.Load += new System.EventHandler(this.Form3_Load);
